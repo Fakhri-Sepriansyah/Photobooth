@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photobooth Sarly Madona - Rasio 9:16 untuk HP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #8B0000, #B22222, #DC143C);
+            color: white;
+            min-height: 100vh;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 100%;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: rgba(139, 0, 0, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            border: 4px solid #FFD700;
+            animation: headerGlow 3s infinite alternate;
+        }
+        
+        @keyframes headerGlow {
+            0% { box-shadow: 0 8px 25px rgba(0,0,0,0.4), 0 0 8px rgba(255,215,0,0.3); }
+            100% { box-shadow: 0 8px 25px rgba(0,0,0,0.4), 0 0 20px rgba(255,215,0,0.7); }
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: #FFD700;
+            text-shadow: 2px 2px 0 #8B0000;
+            letter-spacing: 1px;
+            animation: titlePulse 2s infinite alternate;
+        }
+        
+        @keyframes titlePulse {
+            0% { transform: scale(1); text-shadow: 2px 2px 0 #8B0000; }
+            100% { transform: scale(1.02); text-shadow: 2px 2px 8px rgba(255,215,0,0.8); }
+        }
+        
+        .madona-text {
+            font-size: 1.6rem;
+            color: white;
+            text-shadow: 2px 2px 0 #B22222;
+            font-style: italic;
+            margin-bottom: 12px;
+            animation: madonaFloat 3s infinite ease-in-out;
+        }
+        
+        @keyframes madonaFloat {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.95;
+            max-width: 100%;
+            margin: 0 auto;
+            line-height: 1.5;
+            padding: 0 10px;
+        }
+        
+        .enhanced-features {
+            background-color: rgba(255,215,0,0.2);
+            padding: 10px;
+            border-radius: 12px;
+            margin-top: 12px;
+            text-align: center;
+            font-weight: bold;
+            color: #FFD700;
+            border: 2px solid #FFD700;
+            font-size: 0.9rem;
+            animation: newFeatureGlow 3s infinite alternate;
+        }
+        
+        @keyframes newFeatureGlow {
+            0% { box-shadow: 0 0 4px rgba(255,215,0,0.5); }
+            100% { box-shadow: 0 0 15px rgba(255,215,0,0.8); }
+        }
+        
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 25px;
+            width: 100%;
+        }
+        
+        .camera-section, .preview-section {
+            background-color: rgba(139,0,0,0.8);
+            border-radius: 18px;
+            padding: 20px;
+            width: 100%;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            border: 3px solid #FFD700;
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            margin-bottom: 18px;
+            color: #FFD700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 1px 1px 0 #8B0000;
+        }
+        
+        .section-title i {
+            font-size: 1.5rem;
+        }
+        
+        .camera-container {
+            width: 100%;
+            height: 450px;
+            background-color: #111;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 18px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #FFD700;
+        }
+        
+        #video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scaleX(-1);
+        }
+        
+        /* PANDUAN RASIO 9:16 UNTUK HP */
+        .face-guide {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 180px; /* Rasio 9:16 - Lebar lebih kecil, tinggi lebih besar */
+            height: 320px;
+            border: 3px solid rgba(255, 215, 0, 0.8);
+            border-radius: 8px;
+            pointer-events: none;
+            z-index: 5;
+            box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+        }
+        
+        .guide-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+        }
+        
+        .guide-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background-color: #FFD700;
+            border-radius: 50%;
+        }
+        
+        .face-guide-text {
+            position: absolute;
+            bottom: -45px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: #FFD700;
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+        
+        .ratio-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0,0,0,0.7);
+            color: #FFD700;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            z-index: 10;
+        }
+        
+        .camera-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #FFD700;
+            font-size: 1rem;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .camera-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #FFD700;
+            animation: cameraPulse 2s infinite;
+        }
+        
+        @keyframes cameraPulse {
+            0% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.7; }
+        }
+        
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .btn {
+            padding: 12px 15px;
+            border: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: #DC143C;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #B22222;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 16px rgba(220,20,60,0.5);
+        }
+        
+        .btn-secondary {
+            background-color: #8B0000;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #660000;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 16px rgba(139,0,0,0.5);
+        }
+        
+        .btn-success {
+            background-color: #FFD700;
+            color: #8B0000;
+        }
+        
+        .btn-success:hover {
+            background-color: #FFC800;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 16px rgba(255,215,0,0.5);
+        }
+        
+        .btn-warning {
+            background-color: #FF8C00;
+            color: white;
+        }
+        
+        .btn-warning:hover {
+            background-color: #FF7F00;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 16px rgba(255,140,0,0.5);
+        }
+        
+        .preview-container {
+            width: 100%;
+            height: 450px;
+            background-color: #111;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 18px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #FFD700;
+        }
+        
+        #photoCanvas, #resultCanvas {
+            display: none;
+        }
+        
+        .preview-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #FFD700;
+            font-size: 1rem;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .preview-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #FFD700;
+            animation: previewPulse 2s infinite ease-in-out;
+        }
+        
+        @keyframes previewPulse {
+            0%,100% { transform: scale(1) rotate(0deg); }
+            33% { transform: scale(1.1) rotate(5deg); }
+            66% { transform: scale(1.1) rotate(-5deg); }
+        }
+        
+        .photo-frame {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: none;
+            background: #8B0000;
+            padding: 12px;
+        }
+        
+        .six-photos-grid {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 6px;
+        }
+        
+        .photo-cell {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            border: 2px solid #FFD700;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        
+        .photo-cell.animated {
+            animation: cellPopIn 0.5s ease-out forwards;
+        }
+        
+        @keyframes cellPopIn {
+            0% { opacity: 0; transform: scale(0.8) rotate(-10deg); }
+            70% { opacity: 1; transform: scale(1.05) rotate(5deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+        
+        .photo-cell img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .cell-number {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            background-color: #DC143C;
+            color: white;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+            z-index: 2;
+            animation: numberGlow 1.5s infinite alternate;
+        }
+        
+        @keyframes numberGlow {
+            0% { box-shadow: 0 0 5px rgba(220,20,60,0.5); }
+            100% { box-shadow: 0 0 12px rgba(220,20,60,1); }
+        }
+        
+        .grid-title {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            z-index: 10;
+            opacity: 0;
+        }
+        
+        .grid-title.animated {
+            animation: titleSlideDown 1s ease-out forwards;
+        }
+        
+        @keyframes titleSlideDown {
+            0% { opacity: 0; transform: translateY(-30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        .grid-sarly {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #FFD700;
+            text-shadow: 2px 2px 0 #8B0000;
+            letter-spacing: 2px;
+            animation: sarlySparkle 2s infinite;
+        }
+        
+        @keyframes sarlySparkle {
+            0%,100% { text-shadow: 2px 2px 0 #8B0000, 0 0 5px rgba(255,215,0,0.5); }
+            50% { text-shadow: 2px 2px 0 #8B0000, 0 0 12px rgba(255,215,0,1); }
+        }
+        
+        .grid-madona {
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 0 #B22222;
+            font-style: italic;
+            margin-top: 2px;
+            animation: madonaWave 3s infinite;
+        }
+        
+        @keyframes madonaWave {
+            0%,100% { text-shadow: 1px 1px 0 #B22222; transform: translateX(0); }
+            25% { transform: translateX(-2px); }
+            75% { transform: translateX(2px); }
+        }
+        
+        .photo-frame.active {
+            animation: frameGlow 2s infinite alternate;
+        }
+        
+        @keyframes frameGlow {
+            0% { box-shadow: inset 0 0 10px rgba(255,215,0,0.3); }
+            100% { box-shadow: inset 0 0 25px rgba(255,215,0,0.8); }
+        }
+        
+        .sticker-settings {
+            background-color: rgba(255,215,0,0.15);
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border: 2px solid rgba(255,215,0,0.5);
+        }
+        
+        .sticker-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .sticker-option {
+            background: rgba(139,0,0,0.7);
+            border: 2px solid #FFD700;
+            border-radius: 10px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .sticker-option:hover {
+            transform: translateY(-3px);
+            background: rgba(220,20,60,0.7);
+        }
+        
+        .sticker-option.active {
+            background: #FFD700;
+            color: #8B0000;
+            box-shadow: 0 0 12px rgba(255,215,0,0.7);
+        }
+        
+        .sticker-option i {
+            font-size: 1.2rem;
+        }
+        
+        .sticker-option span {
+            font-size: 0.8rem;
+            text-align: center;
+        }
+        
+        .ratio-info {
+            background-color: rgba(255,215,0,0.2);
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 15px;
+            text-align: center;
+            font-weight: bold;
+            color: #FFD700;
+            border: 2px dashed #FFD700;
+            font-size: 0.85rem;
+        }
+        
+        .ratio-detail {
+            font-size: 0.75rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        
+        .instructions {
+            background-color: rgba(139,0,0,0.8);
+            border-radius: 18px;
+            padding: 18px;
+            margin-top: 20px;
+            width: 100%;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            border: 4px solid #FFD700;
+        }
+        
+        .instructions h2 {
+            color: #FFD700;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-shadow: 1px 1px 0 #8B0000;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .step {
+            background-color: rgba(255,215,0,0.2);
+            padding: 12px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border: 2px solid #FFD700;
+        }
+        
+        .step-number {
+            background-color: #FFD700;
+            color: #8B0000;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: bold;
+            flex-shrink: 0;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+        }
+        
+        .step-text {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: white;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 25px;
+            padding: 18px;
+            color: #FFD700;
+            font-size: 0.8rem;
+            width: 100%;
+            background-color: rgba(139,0,0,0.8);
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            border: 4px solid #8B0000;
+        }
+        
+        .download-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #FFD700;
+            color: #8B0000;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+        }
+        
+        .download-link:hover {
+            background-color: #FFC800;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(255,215,0,0.5);
+        }
+        
+        @media (max-width: 768px) {
+            .main-content { flex-direction: column; }
+            .camera-section, .preview-section { width: 100%; }
+            h1 { font-size: 1.8rem; }
+            .madona-text { font-size: 1.3rem; }
+            .controls { grid-template-columns: 1fr; }
+            .camera-container, .preview-container { height: 400px; }
+            .six-photos-grid { grid-template-columns: repeat(2,1fr); }
+            .sticker-options { grid-template-columns: repeat(2, 1fr); }
+            .face-guide { width: 160px; height: 285px; }
+            .instructions h2 { font-size: 1.2rem; }
+            .steps { grid-template-columns: 1fr; }
+        }
+        
+        @media (max-width: 480px) {
+            .camera-container, .preview-container { height: 380px; }
+            .face-guide { width: 140px; height: 250px; }
+            h1 { font-size: 1.6rem; }
+            .section-title { font-size: 1.2rem; }
+        }
+        
+        .flash {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255,255,255,0.9);
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .flash-active {
+            animation: flash 0.5s;
+        }
+        
+        @keyframes flash {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        
+        .countdown {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            font-size: 3.5rem;
+            color: #FFD700;
+            text-shadow: 0 0 15px rgba(139,0,0,0.9);
+            z-index: 10;
+            opacity: 0;
+            font-weight: bold;
+        }
+        
+        .countdown-active {
+            animation: countdown 1s;
+        }
+        
+        @keyframes countdown {
+            0% { opacity: 0; transform: translate(-50%,-50%) scale(0.5); }
+            50% { opacity: 1; transform: translate(-50%,-50%) scale(1.3); }
+            100% { opacity: 0; transform: translate(-50%,-50%) scale(1.6); }
+        }
+        
+        .photo-status {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background-color: rgba(139,0,0,0.9);
+            color: #FFD700;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            z-index: 5;
+            display: none;
+            animation: statusPulse 2s infinite;
+        }
+        
+        @keyframes statusPulse {
+            0%,100% { background-color: rgba(139,0,0,0.9); }
+            50% { background-color: rgba(220,20,60,0.9); }
+        }
+        
+        .vertical-notice {
+            background-color: rgba(255,215,0,0.2);
+            padding: 8px;
+            border-radius: 10px;
+            margin-top: 10px;
+            text-align: center;
+            font-weight: bold;
+            color: #FFD700;
+            border: 2px solid #FFD700;
+            font-size: 0.8rem;
+        }
+        
+        .status-box {
+            background-color: rgba(0,0,0,0.6);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            text-align: center;
+            font-size: 0.8rem;
+            border: 1px solid #FFD700;
+        }
+        
+        .status-success { color: #90EE90; }
+        .status-error { color: #FF6B6B; }
+        .status-info { color: #FFD700; }
+        
+        .photo-complete {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            font-size: 3rem;
+            color: #FFD700;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .photo-complete.active {
+            animation: photoComplete 2s forwards;
+        }
+        
+        @keyframes photoComplete {
+            0% { opacity: 0; transform: translate(-50%,-50%) scale(0); }
+            20% { opacity: 1; transform: translate(-50%,-50%) scale(1.2); }
+            40% { transform: translate(-50%,-50%) scale(1); }
+            60% { transform: translate(-50%,-50%) scale(1.1); }
+            100% { opacity: 0; transform: translate(-50%,-50%) scale(1.5); }
+        }
+        
+        .cell-enter {
+            animation: cellEnter 0.8s cubic-bezier(0.68,-0.55,0.265,1.55) forwards;
+        }
+        
+        @keyframes cellEnter {
+            0% { opacity: 0; transform: scale(0) rotate(-180deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: #FFD700;
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        .confetti.active {
+            animation: confettiFall 2s forwards;
+        }
+        
+        @keyframes confettiFall {
+            0% { opacity: 1; transform: translateY(-100px) rotate(0deg); }
+            100% { opacity: 0; transform: translateY(500px) rotate(720deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-camera-retro"></i> PHOTOBOOTH SARLY MADONA</h1>
+            <div class="enhanced-features">
+                <i class="fas fa-mobile-alt"></i> SILAHKAN FOTO DENGAN 6 GAYA BEBAS
+                <i class="fas fa-mobile-alt"></i>
+            </div>
+        </header>
+        
+        <main class="main-content">
+            <section class="camera-section">
+                <h2 class="section-title"><i class="fas fa-video"></i> Kamera 9:16 (HP)</h2>
+                <div class="camera-container">
+                    <div class="camera-placeholder" id="cameraPlaceholder">
+                        <i class="fas fa-camera"></i>
+                        <p>Klik "Mulai Kamera" untuk mengaktifkan kamera</p>
+                        <p>Posisikan wajah di dalam kotak panduan 9:16</p>
+                    </div>
+                    <video id="video" autoplay playsinline></video>
+                    <div class="face-guide">
+                        <div class="guide-grid"></div>
+                        <div class="guide-center"></div>
+                        <div class="face-guide-text">POSISIKAN WAJAH DI TENGAH KOTAK 9:16</div>
+                    </div>
+                    <div class="ratio-indicator">RASIO: 9:16</div>
+                    <div class="flash" id="flash"></div>
+                    <div class="countdown" id="countdown">3</div>
+                    <div class="photo-status" id="photoStatus">Foto: 0/6</div>
+                    <div class="photo-complete" id="photoComplete"><i class="fas fa-check-circle"></i></div>
+                </div>
+    
+                <div class="status-box">
+                    <span id="statusText" class="status-info">Status: Menunggu kamera diaktifkan</span>
+                </div>
+                
+                <div class="controls">
+                    <button class="btn btn-primary" id="startCamera"><i class="fas fa-play"></i> Mulai Kamera</button>
+                    <button class="btn btn-secondary" id="takeSinglePhoto" disabled><i class="fas fa-camera"></i> Ambil 1 Foto</button>
+                    <button class="btn btn-success" id="startSixPhotos" disabled><i class="fas fa-images"></i> Mulai 6 Foto</button>
+                    <button class="btn btn-warning" id="retakeAll" disabled><i class="fas fa-redo"></i> Ulangi Semua</button>
+                </div>
+                
+                <!-- SETTING STIKER -->
+                <div class="sticker-settings">
+                    <h3 class="section-title" style="font-size: 1.2rem; margin-bottom: 10px;">
+                        <i class="fas fa-sticker-mule"></i> Pilih Tema Stiker
+                    </h3>
+                    <div class="sticker-options" id="stickerOptions">
+                        <div class="sticker-option active" data-theme="love">
+                            <i class="fas fa-heart"></i>
+                            <span>Tema Cinta</span>
+                        </div>
+                        <div class="sticker-option" data-theme="party">
+                            <i class="fas fa-glass-cheers"></i>
+                            <span>Tema Party</span>
+                        </div>
+                        <div class="sticker-option" data-theme="sparkle">
+                            <i class="fas fa-sparkles"></i>
+                            <span>Tema Sparkle</span>
+                        </div>
+                        <div class="sticker-option" data-theme="funny">
+                            <i class="fas fa-laugh-beam"></i>
+                            <span>Tema Lucu</span>
+                        </div>
+                    </div>
+                    
+                    <div class="ratio-info">
+                        <i class="fas fa-ruler-combined"></i> RASIO 9:16 SAMA SEMUA
+                        <div class="ratio-detail">Semua 6 foto: 360px × 640px (9:16 sama persis)</div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="preview-section">
+                <h2 class="section-title"><i class="fas fa-th-large"></i> Grid 6 Foto (9:16 Sama)</h2>
+                <div class="preview-container">
+                    <div class="preview-placeholder" id="previewPlaceholder">
+                        <i class="fas fa-images"></i>
+                        <p>Grid 6 foto dengan rasio 9:16 sama akan muncul di sini</p>
+                        <p>Format portrait optimal untuk HP</p>
+                    </div>
+                    <canvas id="photoCanvas"></canvas>
+                    <canvas id="resultCanvas"></canvas>
+                    <div class="photo-frame" id="photoFrame">
+                        <div class="grid-title" id="gridTitle">
+                            <div class="grid-sarly">SARLY</div>
+                            <div class="grid-madona">MADONA</div>
+                        </div>
+                        <div class="six-photos-grid" id="sixPhotosGrid"></div>
+                    </div>
+                </div>
+                
+                <div class="controls">
+                    <button class="btn btn-success" id="downloadPhoto" disabled><i class="fas fa-download"></i> Unduh Hasil</button>
+                    <button class="btn btn-primary" id="regenerateStickers" disabled><i class="fas fa-redo"></i> Ganti Stiker</button>
+                </div>
+            </section>
+        </main>
+        
+        <section class="instructions">
+            <h2><i class="fas fa-info-circle"></i> Cara Menggunakan Photobooth</h2>
+            <div class="steps">
+                <div class="step"><div class="step-number">1</div><div class="step-text">Klik "Mulai Kamera" dan izinkan akses kamera</div></div>
+                <div class="step"><div class="step-number">2</div><div class="step-text">Posisikan wajah di TENGAH kotak panduan 9:16 (untuk HP)</div></div>
+                <div class="step"><div class="step-number">3</div><div class="step-text">Pilih tema stiker yang diinginkan</div></div>
+                <div class="step"><div class="step-number">4</div><div class="step-text">Klik "Mulai 6 Foto" untuk sesi lengkap</div></div>
+                <div class="step"><div class="step-number">5</div><div class="step-text">Semua 6 foto akan memiliki rasio 9:16 yang SAMA</div></div>
+                <div class="step"><div class="step-number">6</div><div class="step-text">Klik "Unduh Hasil" untuk menyimpan foto HP</div></div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>PHOTOBOOTH SARLY MADONA - Rasio 9:16 Sama Semua untuk 6 Foto</p>
+            <p>Format portrait optimal untuk HP dengan kualitas konsisten!</p>
+            <a href="#" class="download-link" id="downloadLink" style="display:none;">Klik di sini untuk mengunduh hasil foto</a>
+        </footer>
+    </div>
+
+    <script>
+        // ELEMEN DOM UTAMA
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('photoCanvas');
+        const resultCanvas = document.getElementById('resultCanvas');
+        const photoFrame = document.getElementById('photoFrame');
+        const sixPhotosGrid = document.getElementById('sixPhotosGrid');
+        const startCameraBtn = document.getElementById('startCamera');
+        const takeSinglePhotoBtn = document.getElementById('takeSinglePhoto');
+        const startSixPhotosBtn = document.getElementById('startSixPhotos');
+        const retakeAllBtn = document.getElementById('retakeAll');
+        const downloadPhotoBtn = document.getElementById('downloadPhoto');
+        const cameraPlaceholder = document.getElementById('cameraPlaceholder');
+        const previewPlaceholder = document.getElementById('previewPlaceholder');
+        const flash = document.getElementById('flash');
+        const countdownEl = document.getElementById('countdown');
+        const downloadLink = document.getElementById('downloadLink');
+        const photoStatus = document.getElementById('photoStatus');
+        const statusText = document.getElementById('statusText');
+        const photoComplete = document.getElementById('photoComplete');
+        const gridTitle = document.getElementById('gridTitle');
+        const regenerateStickersBtn = document.getElementById('regenerateStickers');
+        const stickerOptions = document.querySelectorAll('.sticker-option');
+        
+        // KONTEKS CANVAS
+        const ctx = canvas.getContext('2d');
+        const resultCtx = resultCanvas.getContext('2d');
+        
+        // VARIABEL UTAMA
+        let stream = null;
+        let photos = []; // Foto asli
+        let decoratedPhotos = []; // Foto dengan stiker
+        let photoDataUrl = '';
+        let isTakingPhotos = false;
+        let photoCount = 0;
+        let totalPhotosToTake = 1;
+        let currentTheme = 'love';
+        
+        // KONSTANTA ASPEK RATIO 9:16 YANG SAMA PERSIS UNTUK SEMUA FOTO
+        const EXACT_WIDTH = 360;   // Lebar pasti 9:16 (HP Portrait)
+        const EXACT_HEIGHT = 640;  // Tinggi pasti (360/9*16 = 640)
+        const EXACT_RATIO = 9/16;  // Ratio pasti 0.5625
+        
+        // DATA STIKER UNTUK 9:16
+        const stickerThemes = {
+            love: {
+                name: 'Tema Cinta',
+                stickers: [
+                    { emoji: '❤️', size: 40, positions: ['top-left', 'top-right'] },
+                    { emoji: '💖', size: 35, positions: ['bottom-left', 'bottom-right'] }
+                ],
+                frames: [
+                    { type: 'heart-border', color: '#FF1493', size: 8 }
+                ]
+            },
+            party: {
+                name: 'Tema Party',
+                stickers: [
+                    { emoji: '🎉', size: 45, positions: ['top-left', 'bottom-right'] },
+                    { emoji: '🎊', size: 40, positions: ['top-right', 'bottom-left'] }
+                ],
+                frames: [
+                    { type: 'confetti-border', color: '#FFD700', size: 6 }
+                ]
+            },
+            sparkle: {
+                name: 'Tema Sparkle',
+                stickers: [
+                    { emoji: '⭐', size: 40, positions: ['top-left', 'bottom-right'] },
+                    { emoji: '🌟', size: 45, positions: ['top-right', 'bottom-left'] }
+                ],
+                frames: [
+                    { type: 'sparkle-border', color: '#FFEC00', size: 8 }
+                ]
+            },
+            funny: {
+                name: 'Tema Lucu',
+                stickers: [
+                    { emoji: '😂', size: 45, positions: ['top-left', 'bottom-left'] },
+                    { emoji: '🤣', size: 40, positions: ['top-right', 'bottom-right'] }
+                ],
+                frames: [
+                    { type: 'funny-border', color: '#00FF00', size: 5 }
+                ]
+            }
+        };
+        
+        // FUNGSI UTAMA
+        function updateStatus(message, type = 'info') {
+            statusText.textContent = `Status: ${message}`;
+            statusText.className = `status-${type}`;
+        }
+        
+        async function startCamera() {
+            try {
+                updateStatus('Meminta izin akses kamera...', 'info');
+                const constraints = {
+                    video: { 
+                        facingMode: 'user', 
+                        width: { ideal: 1080 }, 
+                        height: { ideal: 1920 }, // 9:16 ratio (Portrait HD)
+                        aspectRatio: { ideal: 9/16 } // Ideal ratio 9:16 untuk HP
+                    },
+                    audio: false
+                };
+                
+                stream = await navigator.mediaDevices.getUserMedia(constraints);
+                video.srcObject = stream;
+                cameraPlaceholder.style.display = 'none';
+                
+                takeSinglePhotoBtn.disabled = false;
+                startSixPhotosBtn.disabled = false;
+                startCameraBtn.disabled = true;
+                startCameraBtn.innerHTML = '<i class="fas fa-check"></i> Kamera Aktif';
+                
+                updateStatus('Kamera aktif! Posisikan wajah di tengah kotak panduan 9:16.', 'success');
+            } catch (error) {
+                updateStatus(`Gagal mengakses kamera: ${error.message}`, 'error');
+                alert('Tidak dapat mengakses kamera. Pastikan Anda memberikan izin akses kamera.');
+            }
+        }
+        
+        function takeSinglePhoto() {
+            if (isTakingPhotos) return;
+            totalPhotosToTake = 1;
+            photos = [];
+            decoratedPhotos = [];
+            photoCount = 0;
+            isTakingPhotos = true;
+            takeSinglePhotoBtn.disabled = true;
+            startSixPhotosBtn.disabled = true;
+            updateStatus('Siap mengambil 1 foto dengan rasio 9:16...', 'info');
+            startCountdown();
+        }
+        
+        function startSixPhotos() {
+            if (isTakingPhotos) return;
+            totalPhotosToTake = 6;
+            photos = [];
+            decoratedPhotos = [];
+            photoCount = 0;
+            isTakingPhotos = true;
+            takeSinglePhotoBtn.disabled = true;
+            startSixPhotosBtn.disabled = true;
+            retakeAllBtn.disabled = false;
+            photoStatus.style.display = 'block';
+            updatePhotoStatus();
+            updateStatus('Memulai sesi 6 foto dengan rasio 9:16 sama...', 'info');
+            startCountdown();
+        }
+        
+        function startCountdown() {
+            let count = 3;
+            countdownEl.textContent = count;
+            countdownEl.classList.add('countdown-active');
+            
+            const countdownInterval = setInterval(() => {
+                count--;
+                countdownEl.textContent = count;
+                updateStatus(`Foto akan diambil dalam ${count} detik...`, 'info');
+                
+                if (count === 0) {
+                    clearInterval(countdownInterval);
+                    countdownEl.textContent = '📸';
+                    setTimeout(() => {
+                        countdownEl.classList.remove('countdown-active');
+                        takePhoto();
+                    }, 500);
+                }
+            }, 1000);
+        }
+        
+        function takePhoto() {
+            updateStatus('Mengambil foto dengan rasio 9:16 yang sama...', 'info');
+            
+            if (video.readyState !== 4) {
+                updateStatus('Video belum siap, mencoba lagi...', 'error');
+                setTimeout(takePhoto, 100);
+                return;
+            }
+            
+            const videoWidth = video.videoWidth;
+            const videoHeight = video.videoHeight;
+            
+            // Set canvas ke ukuran EXACT 9:16 yang SAMA untuk SEMUA FOTO
+            canvas.width = EXACT_WIDTH;
+            canvas.height = EXACT_HEIGHT;
+            
+            // Hitung area crop untuk mendapatkan rasio 9:16
+            let sourceWidth, sourceHeight, sourceX, sourceY;
+            
+            // Log rasio asli kamera
+            console.log(`Rasio kamera asli: ${videoWidth}:${videoHeight} (${(videoWidth/videoHeight).toFixed(4)})`);
+            console.log(`Target rasio: 9:16 (${EXACT_RATIO.toFixed(4)})`);
+            
+            if (videoWidth / videoHeight < EXACT_RATIO) {
+                // Video lebih tinggi daripada 9:16 (portrait ekstrem)
+                sourceWidth = videoWidth;
+                sourceHeight = Math.round(sourceWidth / EXACT_RATIO);
+                sourceX = 0;
+                sourceY = Math.round((videoHeight - sourceHeight) / 2);
+                console.log(`Crop: Ambil tengah vertikal ${sourceWidth}x${sourceHeight} dari ${videoWidth}x${videoHeight}`);
+            } else {
+                // Video lebih lebar daripada 9:16 (mendekati landscape)
+                sourceHeight = videoHeight;
+                sourceWidth = Math.round(sourceHeight * EXACT_RATIO);
+                sourceX = Math.round((videoWidth - sourceWidth) / 2);
+                sourceY = 0;
+                console.log(`Crop: Ambil tengah horizontal ${sourceWidth}x${sourceHeight} dari ${videoWidth}x${videoHeight}`);
+            }
+            
+            // Pastikan tidak melebihi batas video
+            sourceX = Math.max(0, sourceX);
+            sourceY = Math.max(0, sourceY);
+            sourceWidth = Math.min(sourceWidth, videoWidth - sourceX);
+            sourceHeight = Math.min(sourceHeight, videoHeight - sourceY);
+            
+            // Clear canvas dengan warna putih
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Gambar video ke canvas dengan crop ke 9:16
+            ctx.save();
+            ctx.scale(-1, 1); // Mirror horizontal
+            ctx.drawImage(
+                video,
+                sourceX, sourceY, sourceWidth, sourceHeight,
+                -canvas.width, 0, canvas.width, canvas.height
+            );
+            ctx.restore();
+            
+            // Efek flash
+            flash.classList.add('flash-active');
+            
+            // Simpan foto asli (sudah 9:16)
+            const photoData = canvas.toDataURL('image/jpeg', 0.9);
+            photos.push(photoData);
+            photoCount++;
+            
+            updateStatus(`Foto ${photoCount} berhasil diambil (360×640px 9:16)!`, 'success');
+            showPhotoComplete();
+            
+            if (totalPhotosToTake > 1) {
+                updatePhotoStatus();
+            }
+            
+            // Auto-decorate foto dengan rasio 9:16
+            autoDecoratePhoto(photoCount - 1);
+            
+            setTimeout(() => {
+                flash.classList.remove('flash-active');
+            }, 500);
+            
+            if (photoCount < totalPhotosToTake) {
+                setTimeout(() => {
+                    startCountdown();
+                }, 2000);
+            } else {
+                finishPhotoSession();
+            }
+        }
+        
+        // FUNGSI DEKORASI FOTO DENGAN RASIO 9:16
+        function autoDecoratePhoto(photoIndex) {
+            if (!photos[photoIndex]) return;
+            
+            const tempCanvas = document.createElement('canvas');
+            const tempCtx = tempCanvas.getContext('2d');
+            const img = new Image();
+            
+            img.onload = () => {
+                // Set canvas ke ukuran EXACT 9:16
+                tempCanvas.width = EXACT_WIDTH;
+                tempCanvas.height = EXACT_HEIGHT;
+                
+                // Gambar foto asli (sudah 9:16)
+                tempCtx.drawImage(img, 0, 0, tempCanvas.width, tempCanvas.height);
+                
+                // Ambil tema yang dipilih
+                const theme = stickerThemes[currentTheme];
+                
+                // Tambahkan stiker dengan posisi yang dioptimalkan untuk 9:16
+                theme.stickers.forEach(sticker => {
+                    const positions = Array.isArray(sticker.positions) ? sticker.positions : [sticker.positions];
+                    
+                    positions.forEach(position => {
+                        let x, y;
+                        
+                        // Posisi dioptimalkan untuk rasio 9:16 yang lebih tinggi
+                        switch(position) {
+                            case 'top-left':
+                                x = 30;
+                                y = 50;
+                                break;
+                            case 'top-right':
+                                x = tempCanvas.width - sticker.size - 30;
+                                y = 50;
+                                break;
+                            case 'bottom-left':
+                                x = 30;
+                                y = tempCanvas.height - sticker.size - 50;
+                                break;
+                            case 'bottom-right':
+                                x = tempCanvas.width - sticker.size - 30;
+                                y = tempCanvas.height - sticker.size - 50;
+                                break;
+                            default:
+                                x = 30;
+                                y = 50;
+                        }
+                        
+                        // Gambar stiker
+                        drawSticker(tempCtx, sticker.emoji, sticker.size, x, y);
+                    });
+                });
+                
+                // Tambahkan bingkai
+                addFrameToPhoto(tempCtx, tempCanvas, theme);
+                
+                // Simpan foto yang sudah didekorasi
+                decoratedPhotos[photoIndex] = tempCanvas.toDataURL('image/jpeg', 0.9);
+                
+                // Update grid
+                setTimeout(() => {
+                    updatePhotoGrid();
+                }, 100);
+            };
+            
+            img.src = photos[photoIndex];
+        }
+        
+        // Fungsi gambar stiker
+        function drawSticker(ctx, emoji, size, x, y) {
+            ctx.save();
+            ctx.font = `bold ${size}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            // Efek bayangan
+            ctx.shadowColor = 'rgba(0,0,0,0.5)';
+            ctx.shadowBlur = 6;
+            ctx.shadowOffsetX = 2;
+            ctx.shadowOffsetY = 2;
+            
+            ctx.fillText(emoji, x + size/2, y + size/2);
+            
+            // Outline putih
+            ctx.shadowColor = 'rgba(255,255,255,0.8)';
+            ctx.shadowBlur = 3;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 0;
+            ctx.strokeText(emoji, x + size/2, y + size/2);
+            
+            ctx.restore();
+        }
+        
+        // Fungsi tambah bingkai
+        function addFrameToPhoto(ctx, canvas, theme) {
+            ctx.save();
+            
+            theme.frames.forEach(frame => {
+                switch(frame.type) {
+                    case 'heart-border':
+                        ctx.strokeStyle = frame.color;
+                        ctx.lineWidth = frame.size;
+                        ctx.strokeRect(5, 5, canvas.width - 10, canvas.height - 10);
+                        break;
+                        
+                    case 'confetti-border':
+                        ctx.setLineDash([8, 4]);
+                        ctx.strokeStyle = frame.color;
+                        ctx.lineWidth = frame.size;
+                        ctx.strokeRect(8, 8, canvas.width - 16, canvas.height - 16);
+                        ctx.setLineDash([]);
+                        break;
+                        
+                    case 'sparkle-border':
+                        ctx.strokeStyle = frame.color;
+                        ctx.lineWidth = frame.size;
+                        ctx.setLineDash([4, 2]);
+                        ctx.strokeRect(6, 6, canvas.width - 12, canvas.height - 12);
+                        ctx.setLineDash([]);
+                        break;
+                        
+                    case 'funny-border':
+                        ctx.strokeStyle = frame.color;
+                        ctx.lineWidth = frame.size;
+                        ctx.strokeRect(4, 4, canvas.width - 8, canvas.height - 8);
+                        break;
+                }
+            });
+            
+            ctx.restore();
+        }
+        
+        function finishPhotoSession() {
+            isTakingPhotos = false;
+            
+            if (totalPhotosToTake > 1) {
+                photoStatus.style.display = 'none';
+                updateStatus(`Selesai mengambil ${totalPhotosToTake} foto dengan rasio 9:16 sama!`, 'success');
+                createConfetti();
+            } else {
+                updateStatus('Foto berhasil diambil!', 'success');
+            }
+            
+            previewPlaceholder.style.display = 'none';
+            photoFrame.style.display = 'block';
+            animatePhotoCells();
+            animateGridTitle();
+            activatePhotoFrame();
+            
+            takeSinglePhotoBtn.disabled = false;
+            startSixPhotosBtn.disabled = false;
+            downloadPhotoBtn.disabled = false;
+            regenerateStickersBtn.disabled = false;
+            downloadLink.style.display = 'inline-block';
+            retakeAllBtn.disabled = false;
+            
+            // Buat gambar akhir untuk diunduh
+            createDownloadImage();
+        }
+        
+        function updatePhotoStatus() {
+            photoStatus.textContent = `Foto: ${photoCount}/${totalPhotosToTake}`;
+        }
+        
+        function updatePhotoGrid() {
+            sixPhotosGrid.innerHTML = '';
+            
+            for (let i = 0; i < 6; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'photo-cell';
+                
+                const cellNumber = document.createElement('div');
+                cellNumber.className = 'cell-number';
+                cellNumber.textContent = i + 1;
+                
+                const img = document.createElement('img');
+                
+                if (i < photos.length) {
+                    img.src = decoratedPhotos[i] || photos[i];
+                    img.alt = `Foto ${i + 1} (360×640px 9:16)`;
+                    img.title = `Foto ${i + 1} - 360×640px (9:16)`;
+                    
+                    if (i === photos.length - 1) {
+                        cell.classList.add('animated');
+                    }
+                } else if (i < totalPhotosToTake) {
+                    img.src = 'data:image/svg+xml;base64,' + btoa(`
+                        <svg xmlns="http://www.w3.org/2000/svg" width="${EXACT_WIDTH}" height="${EXACT_HEIGHT}" viewBox="0 0 ${EXACT_WIDTH} ${EXACT_HEIGHT}">
+                            <rect width="${EXACT_WIDTH}" height="${EXACT_HEIGHT}" fill="#f0f0f0"/>
+                            <circle cx="${EXACT_WIDTH/2}" cy="${EXACT_HEIGHT/2}" r="40" fill="#ddd"/>
+                            <rect x="${(EXACT_WIDTH-40)/2}" y="${EXACT_HEIGHT-70}" width="40" height="25" fill="#ddd" rx="5"/>
+                            <text x="${EXACT_WIDTH/2}" y="${EXACT_HEIGHT-20}" font-family="Arial" font-size="14" text-anchor="middle" fill="#999">${i + 1}</text>
+                            <text x="${EXACT_WIDTH/2}" y="30" font-family="Arial" font-size="10" text-anchor="middle" fill="#aaa">9:16</text>
+                        </svg>
+                    `);
+                } else {
+                    img.src = 'data:image/svg+xml;base64,' + btoa(`
+                        <svg xmlns="http://www.w3.org/2000/svg" width="${EXACT_WIDTH}" height="${EXACT_HEIGHT}" viewBox="0 0 ${EXACT_WIDTH} ${EXACT_HEIGHT}">
+                            <rect width="${EXACT_WIDTH}" height="${EXACT_HEIGHT}" fill="#f5f5f5"/>
+                            <text x="${EXACT_WIDTH/2}" y="${EXACT_HEIGHT/2}" font-family="Arial" font-size="14" text-anchor="middle" fill="#ccc">Kosong</text>
+                        </svg>
+                    `);
+                }
+                
+                cell.appendChild(cellNumber);
+                cell.appendChild(img);
+                sixPhotosGrid.appendChild(cell);
+            }
+        }
+        
+        function createDownloadImage() {
+            if (photos.length === 0) return;
+            
+            updateStatus('Menyiapkan gambar untuk diunduh...', 'info');
+            const isSinglePhoto = photos.length === 1;
+            
+            // Set ukuran result canvas dengan rasio 9:16 untuk hasil akhir
+            if (isSinglePhoto) {
+                resultCanvas.width = 720;   // 9:16 untuk single photo
+                resultCanvas.height = 1280; // 9:16
+            } else {
+                resultCanvas.width = 1080;  // 9:16 untuk grid 2x3
+                resultCanvas.height = 1920; // 9:16
+            }
+            
+            const gradient = resultCtx.createLinearGradient(0, 0, resultCanvas.width, resultCanvas.height);
+            gradient.addColorStop(0, '#8B0000');
+            gradient.addColorStop(0.5, '#B22222');
+            gradient.addColorStop(1, '#DC143C');
+            resultCtx.fillStyle = gradient;
+            resultCtx.fillRect(0, 0, resultCanvas.width, resultCanvas.height);
+            
+            if (isSinglePhoto) {
+                const img = new Image();
+                img.onload = () => {
+                    const photoWidth = resultCanvas.width - 120;
+                    const photoHeight = Math.round(photoWidth * 16/9); // 9:16
+                    const x = 60;
+                    const y = (resultCanvas.height - photoHeight) / 2;
+                    
+                    resultCtx.fillStyle = 'white';
+                    resultCtx.fillRect(x - 5, y - 5, photoWidth + 10, photoHeight + 10);
+                    resultCtx.strokeStyle = '#FFD700';
+                    resultCtx.lineWidth = 8;
+                    resultCtx.strokeRect(x - 5, y - 5, photoWidth + 10, photoHeight + 10);
+                    resultCtx.drawImage(img, x, y, photoWidth, photoHeight);
+                    addTextToResult();
+                    saveResultImage();
+                };
+                img.src = decoratedPhotos[0] || photos[0];
+            } else {
+                const gridCols = 2;
+                const gridRows = 3;
+                const cellWidth = resultCanvas.width / gridCols;
+                const cellHeight = resultCanvas.height / gridRows;
+                const padding = 30;
+                const photoWidth = cellWidth - padding * 2;
+                const photoHeight = Math.round(photoWidth * 16/9); // 9:16
+                
+                let imagesLoaded = 0;
+                
+                for (let i = 0; i < Math.min(6, photos.length); i++) {
+                    const img = new Image();
+                    img.onload = () => {
+                        imagesLoaded++;
+                        const row = Math.floor(i / gridCols);
+                        const col = i % gridCols;
+                        const x = col * cellWidth + padding;
+                        const y = row * cellHeight + (cellHeight - photoHeight) / 2;
+                        
+                        resultCtx.fillStyle = 'white';
+                        resultCtx.fillRect(x - 5, y - 5, photoWidth + 10, photoHeight + 10);
+                        resultCtx.strokeStyle = '#FFD700';
+                        resultCtx.lineWidth = 5;
+                        resultCtx.strokeRect(x - 5, y - 5, photoWidth + 10, photoHeight + 10);
+                        resultCtx.drawImage(img, x, y, photoWidth, photoHeight);
+                        
+                        if (imagesLoaded === Math.min(6, photos.length)) {
+                            addTextToResult();
+                            saveResultImage();
+                        }
+                    };
+                    img.src = decoratedPhotos[i] || photos[i];
+                }
+            }
+        }
+        
+        function addTextToResult() {
+            resultCtx.fillStyle = '#FFD700';
+            resultCtx.font = 'bold 60px Arial';
+            resultCtx.textAlign = 'center';
+            resultCtx.shadowColor = 'rgba(0,0,0,0.5)';
+            resultCtx.shadowBlur = 10;
+            resultCtx.fillText('SARLY', resultCanvas.width / 2, 80);
+            
+            resultCtx.font = 'bold italic 45px Arial';
+            resultCtx.fillStyle = 'white';
+            resultCtx.fillText('MADONA', resultCanvas.width / 2, resultCanvas.height - 70);
+            
+            // Tambahkan info rasio
+            resultCtx.font = 'bold 22px Arial';
+            resultCtx.fillStyle = '#FFD700';
+            resultCtx.fillText('', resultCanvas.width / 2, resultCanvas.height - 30);
+            
+            resultCtx.shadowColor = 'transparent';
+            resultCtx.shadowBlur = 0;
+            resultCtx.strokeStyle = '#FFD700';
+            resultCtx.lineWidth = 15;
+            resultCtx.strokeRect(20, 20, resultCanvas.width - 40, resultCanvas.height - 40);
+        }
+        
+        function saveResultImage() {
+            photoDataUrl = resultCanvas.toDataURL('image/png');
+            updateStatus('Gambar siap diunduh! Semua foto rasio 9:16 sama.', 'success');
+        }
+        
+        function retakeAllPhotos() {
+            photos = [];
+            decoratedPhotos = [];
+            photoCount = 0;
+            isTakingPhotos = false;
+            previewPlaceholder.style.display = 'flex';
+            photoFrame.style.display = 'none';
+            photoFrame.classList.remove('active');
+            gridTitle.classList.remove('animated');
+            takeSinglePhotoBtn.disabled = false;
+            startSixPhotosBtn.disabled = false;
+            retakeAllBtn.disabled = true;
+            downloadPhotoBtn.disabled = true;
+            regenerateStickersBtn.disabled = true;
+            downloadLink.style.display = 'none';
+            photoStatus.style.display = 'none';
+            updateStatus('Siap mengambil foto baru...', 'info');
+        }
+        
+        function downloadPhoto() {
+            if (!photoDataUrl) {
+                alert('Belum ada foto yang bisa diunduh. Silakan ambil foto terlebih dahulu.');
+                return;
+            }
+            
+            const link = document.createElement('a');
+            link.href = photoDataUrl;
+            link.download = `sarly-madona-6foto-9x16-sama-${new Date().getTime()}.png`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            updateStatus('Foto berhasil diunduh!', 'success');
+            alert(`6 Foto Sarly Madona dengan rasio 9:16 sama telah berhasil diunduh!`);
+        }
+        
+        function showPhotoComplete() {
+            photoComplete.classList.add('active');
+            setTimeout(() => {
+                photoComplete.classList.remove('active');
+            }, 2000);
+        }
+        
+        function animatePhotoCells() {
+            const cells = document.querySelectorAll('.photo-cell');
+            cells.forEach((cell, index) => {
+                setTimeout(() => {
+                    cell.classList.add('cell-enter');
+                    cell.style.animationDelay = `${index * 0.1}s`;
+                }, 100);
+            });
+        }
+        
+        function animateGridTitle() {
+            setTimeout(() => {
+                gridTitle.classList.add('animated');
+            }, 500);
+        }
+        
+        function activatePhotoFrame() {
+            photoFrame.classList.add('active');
+        }
+        
+        function createConfetti() {
+            const container = document.querySelector('.preview-container');
+            
+            for (let i = 0; i < 40; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.backgroundColor = getRandomColor();
+                confetti.style.width = `${Math.random() * 8 + 4}px`;
+                confetti.style.height = confetti.style.width;
+                
+                container.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.classList.add('active');
+                }, Math.random() * 100);
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, 2000);
+            }
+        }
+        
+        function getRandomColor() {
+            const colors = ['#FFD700', '#FF8C00', '#DC143C', '#FFFFFF', '#8B0000', '#FF1493', '#00FF00'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+        
+        // FUNGSI UNTUK GANTI STIKER
+        function regenerateStickers() {
+            if (photos.length === 0) {
+                alert('Belum ada foto yang bisa diberi stiker. Silakan ambil foto terlebih dahulu.');
+                return;
+            }
+            
+            updateStatus('Mengganti stiker...', 'info');
+            decoratedPhotos = [];
+            
+            // Dekorasi ulang semua foto dengan rasio 9:16
+            for (let i = 0; i < photos.length; i++) {
+                autoDecoratePhoto(i);
+            }
+            
+            // Update grid dengan stiker baru
+            setTimeout(() => {
+                updatePhotoGrid();
+                createDownloadImage();
+                updateStatus('Stiker berhasil diganti! Rasio tetap 9:16 sama.', 'success');
+            }, 800);
+        }
+        
+        // FUNGSI UNTUK PILIH TEMA
+        function selectTheme(theme) {
+            currentTheme = theme;
+            
+            stickerOptions.forEach(option => {
+                if (option.dataset.theme === theme) {
+                    option.classList.add('active');
+                } else {
+                    option.classList.remove('active');
+                }
+            });
+            
+            updateStatus(`Tema stiker diubah ke: ${stickerThemes[theme].name}`, 'success');
+            
+            if (photos.length > 0) {
+                regenerateStickers();
+            }
+        }
+        
+        // INISIALISASI
+        window.addEventListener('load', () => {
+            updateStatus('Photobooth Sarly Madona siap digunakan! Rasio 9:16 sama semua.', 'info');
+            updatePhotoGrid();
+            
+            // EVENT LISTENERS
+            startCameraBtn.addEventListener('click', startCamera);
+            takeSinglePhotoBtn.addEventListener('click', takeSinglePhoto);
+            startSixPhotosBtn.addEventListener('click', startSixPhotos);
+            retakeAllBtn.addEventListener('click', retakeAllPhotos);
+            downloadPhotoBtn.addEventListener('click', downloadPhoto);
+            downloadLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                downloadPhoto();
+            });
+            
+            regenerateStickersBtn.addEventListener('click', regenerateStickers);
+            
+            stickerOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    selectTheme(option.dataset.theme);
+                });
+            });
+            
+            window.addEventListener('beforeunload', () => {
+                if (stream) {
+                    stream.getTracks().forEach(track => track.stop());
+                }
+            });
+        });
+    </script>
+</body>
+</html>
