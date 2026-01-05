@@ -154,19 +154,46 @@
             transform: scaleX(-1);
         }
         
-        /* PANDUAN RASIO 9:16 UNTUK HP */
+        /* PANDUAN RASIO 9:16 UNTUK HP - UKURAN DINAMIS */
         .face-guide {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 180px; /* Rasio 9:16 - Lebar lebih kecil, tinggi lebih besar */
+            width: 180px; /* Default untuk medium screen */
             height: 320px;
             border: 3px solid rgba(255, 215, 0, 0.8);
             border-radius: 8px;
             pointer-events: none;
             z-index: 5;
             box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        /* Kelas untuk ukuran layar berbeda */
+        .face-guide.very-small {
+            width: 120px;
+            height: 213px;
+        }
+        
+        .face-guide.small {
+            width: 140px;
+            height: 249px;
+        }
+        
+        .face-guide.medium {
+            width: 180px;
+            height: 320px;
+        }
+        
+        .face-guide.large {
+            width: 200px;
+            height: 356px;
+        }
+        
+        .face-guide.very-large {
+            width: 220px;
+            height: 391px;
         }
         
         .guide-grid {
@@ -210,6 +237,20 @@
             font-size: 0.75rem;
             font-weight: bold;
             z-index: 10;
+        }
+        
+        .screen-size-indicator {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(0,0,0,0.7);
+            color: #FFD700;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            z-index: 10;
+            display: none;
         }
         
         .camera-placeholder {
@@ -803,33 +844,34 @@
         <header>
             <h1><i class="fas fa-camera-retro"></i> PHOTOBOOTH SARLY MADONA</h1>
             <div class="enhanced-features">
-                <i class="fas fa-mobile-alt"></i> SILAHKAN FOTO DENGAN 6 GAYA BEBAS
+                <i class="fas fa-mobile-alt"></i> KAMERA OTOMATIS SESUAI UKURAN HP
                 <i class="fas fa-mobile-alt"></i>
             </div>
         </header>
         
         <main class="main-content">
             <section class="camera-section">
-                <h2 class="section-title"><i class="fas fa-video"></i> Kamera 9:16 (HP)</h2>
+                <h2 class="section-title"><i class="fas fa-video"></i> Kamera Otomatis Sesuai HP</h2>
                 <div class="camera-container">
                     <div class="camera-placeholder" id="cameraPlaceholder">
                         <i class="fas fa-camera"></i>
                         <p>Klik "Mulai Kamera" untuk mengaktifkan kamera</p>
-                        <p>Posisikan wajah di dalam kotak panduan 9:16</p>
+                        <p>Kamera otomatis menyesuaikan ukuran layar HP</p>
                     </div>
                     <video id="video" autoplay playsinline></video>
-                    <div class="face-guide">
+                    <div class="face-guide medium" id="faceGuide">
                         <div class="guide-grid"></div>
                         <div class="guide-center"></div>
-                        <div class="face-guide-text">POSISIKAN WAJAH DI TENGAH KOTAK 9:16</div>
+                        <div class="face-guide-text" id="guideText">POSISIKAN WAJAH DI TENGAH</div>
                     </div>
                     <div class="ratio-indicator">RASIO: 9:16</div>
+                    <div class="screen-size-indicator" id="screenSizeIndicator">HP Medium</div>
                     <div class="flash" id="flash"></div>
                     <div class="countdown" id="countdown">3</div>
                     <div class="photo-status" id="photoStatus">Foto: 0/6</div>
                     <div class="photo-complete" id="photoComplete"><i class="fas fa-check-circle"></i></div>
                 </div>
-    
+
                 <div class="status-box">
                     <span id="statusText" class="status-info">Status: Menunggu kamera diaktifkan</span>
                 </div>
@@ -866,8 +908,8 @@
                     </div>
                     
                     <div class="ratio-info">
-                        <i class="fas fa-ruler-combined"></i> RASIO 9:16 SAMA SEMUA
-                        <div class="ratio-detail">Semua 6 foto: 360px × 640px (9:16 sama persis)</div>
+                        <i class="fas fa-ruler-combined"></i> KAMERA OTOMATIS SESUAI UKURAN HP
+                        <div class="ratio-detail">Semua foto: 360px × 640px (9:16 sama) - Output tetap konsisten</div>
                     </div>
                 </div>
             </section>
@@ -899,20 +941,20 @@
         </main>
         
         <section class="instructions">
-            <h2><i class="fas fa-info-circle"></i> Cara Menggunakan Photobooth</h2>
+            <h2><i class="fas fa-info-circle"></i> Fitur Kamera Otomatis Sesuai HP</h2>
             <div class="steps">
-                <div class="step"><div class="step-number">1</div><div class="step-text">Klik "Mulai Kamera" dan izinkan akses kamera</div></div>
-                <div class="step"><div class="step-number">2</div><div class="step-text">Posisikan wajah di TENGAH kotak panduan 9:16 (untuk HP)</div></div>
-                <div class="step"><div class="step-number">3</div><div class="step-text">Pilih tema stiker yang diinginkan</div></div>
-                <div class="step"><div class="step-number">4</div><div class="step-text">Klik "Mulai 6 Foto" untuk sesi lengkap</div></div>
-                <div class="step"><div class="step-number">5</div><div class="step-text">Semua 6 foto akan memiliki rasio 9:16 yang SAMA</div></div>
-                <div class="step"><div class="step-number">6</div><div class="step-text">Klik "Unduh Hasil" untuk menyimpan foto HP</div></div>
+                <div class="step"><div class="step-number">1</div><div class="step-text">Kamera DETEKSI OTOMATIS ukuran layar HP Anda</div></div>
+                <div class="step"><div class="step-number">2</div><div class="step-text">Panduan wajah MENYESUAIKAN otomatis besar/kecilnya HP</div></div>
+                <div class="step"><div class="step-number">3</div><div class="step-text">Resolusi kamera optimal untuk HP besar/kecil</div></div>
+                <div class="step"><div class="step-number">4</div><div class="step-text">Hasil foto tetap 9:16 SAMA untuk semua HP</div></div>
+                <div class="step"><div class="step-number">5</div><div class="step-text">Kualitas foto konsisten di semua ukuran HP</div></div>
+                <div class="step"><div class="step-number">6</div><div class="step-text">Tidak perlu setting manual - SEMUA OTOMATIS!</div></div>
             </div>
         </section>
         
         <footer>
-            <p>PHOTOBOOTH SARLY MADONA - Rasio 9:16 Sama Semua untuk 6 Foto</p>
-            <p>Format portrait optimal untuk HP dengan kualitas konsisten!</p>
+            <p>PHOTOBOOTH SARLY MADONA - Kamera Otomatis Sesuai Ukuran HP</p>
+            <p>Dari HP kecil hingga besar, hasil foto tetap konsisten 9:16!</p>
             <a href="#" class="download-link" id="downloadLink" style="display:none;">Klik di sini untuk mengunduh hasil foto</a>
         </footer>
     </div>
@@ -940,6 +982,9 @@
         const gridTitle = document.getElementById('gridTitle');
         const regenerateStickersBtn = document.getElementById('regenerateStickers');
         const stickerOptions = document.querySelectorAll('.sticker-option');
+        const faceGuide = document.getElementById('faceGuide');
+        const guideText = document.getElementById('guideText');
+        const screenSizeIndicator = document.getElementById('screenSizeIndicator');
         
         // KONTEKS CANVAS
         const ctx = canvas.getContext('2d');
@@ -954,6 +999,7 @@
         let photoCount = 0;
         let totalPhotosToTake = 1;
         let currentTheme = 'love';
+        let currentScreenSize = 'medium';
         
         // KONSTANTA ASPEK RATIO 9:16 YANG SAMA PERSIS UNTUK SEMUA FOTO
         const EXACT_WIDTH = 360;   // Lebar pasti 9:16 (HP Portrait)
@@ -1004,7 +1050,135 @@
             }
         };
         
-        // FUNGSI UTAMA
+        // ============================================
+        // FUNGSI UTAMA DETECTION UKURAN LAYAR HP
+        // ============================================
+        
+        // Fungsi untuk mendeteksi ukuran layar HP
+        function detectScreenSize() {
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+            const screenRatio = screenWidth / screenHeight;
+            
+            console.log(`Deteksi HP: ${screenWidth}x${screenHeight} (ratio: ${screenRatio.toFixed(2)})`);
+            
+            let screenCategory;
+            let screenLabel;
+            
+            // Klasifikasi ukuran HP berdasarkan lebar layar
+            if (screenWidth <= 320) {
+                screenCategory = 'very-small';
+                screenLabel = 'HP Sangat Kecil';
+            } else if (screenWidth <= 375) {
+                screenCategory = 'small';
+                screenLabel = 'HP Kecil';
+            } else if (screenWidth <= 414) {
+                screenCategory = 'medium';
+                screenLabel = 'HP Sedang';
+            } else if (screenWidth <= 768) {
+                screenCategory = 'large';
+                screenLabel = 'HP Besar';
+            } else {
+                screenCategory = 'very-large';
+                screenLabel = 'HP Sangat Besar/Tablet';
+            }
+            
+            // Simpan kategori saat ini
+            currentScreenSize = screenCategory;
+            
+            // Update indikator di layar
+            screenSizeIndicator.textContent = screenLabel;
+            screenSizeIndicator.style.display = 'block';
+            
+            // Update status
+            updateStatus(`HP terdeteksi: ${screenLabel} (${screenWidth}x${screenHeight})`, 'info');
+            
+            return { category: screenCategory, label: screenLabel, width: screenWidth, height: screenHeight };
+        }
+        
+        // Fungsi untuk menyesuaikan panduan wajah berdasarkan ukuran HP
+        function adjustFaceGuideForScreenSize(screenInfo) {
+            const guide = faceGuide;
+            
+            // Hapus semua kelas ukuran sebelumnya
+            guide.classList.remove('very-small', 'small', 'medium', 'large', 'very-large');
+            
+            // Tambah kelas ukuran yang sesuai
+            guide.classList.add(screenInfo.category);
+            
+            // Update teks panduan
+            const guideMessages = {
+                'very-small': 'HP KECIL: Dekatkan wajah ke kamera',
+                'small': 'HP KECIL: Posisikan wajah di tengah',
+                'medium': 'HP SEDANG: Posisikan wajah di tengah',
+                'large': 'HP BESAR: Posisikan wajah di tengah',
+                'very-large': 'HP/TABLET: Posisikan wajah di tengah'
+            };
+            
+            guideText.textContent = guideMessages[screenInfo.category] || 'POSISIKAN WAJAH DI TENGAH';
+            
+            // Animasi feedback
+            guide.style.transform = 'translate(-50%, -50%) scale(1.1)';
+            setTimeout(() => {
+                guide.style.transform = 'translate(-50%, -50%) scale(1)';
+            }, 300);
+            
+            console.log(`Panduan disesuaikan untuk: ${screenInfo.label}`);
+        }
+        
+        // Fungsi untuk mendapatkan resolusi kamera optimal berdasarkan ukuran HP
+        function getOptimalCameraResolution(screenInfo) {
+            const resolutions = {
+                'very-small': { width: 640, height: 480 },
+                'small': { width: 720, height: 1280 },
+                'medium': { width: 1080, height: 1920 },
+                'large': { width: 1080, height: 1920 },
+                'very-large': { width: 1080, height: 1920 }
+            };
+            
+            const optimal = resolutions[screenInfo.category] || { width: 720, height: 1280 };
+            
+            console.log(`Resolusi kamera optimal: ${optimal.width}x${optimal.height} (untuk ${screenInfo.label})`);
+            return optimal;
+        }
+        
+        // Fungsi untuk menyesuaikan tampilan kamera container
+        function adjustCameraContainer(screenInfo) {
+            const cameraContainer = document.querySelector('.camera-container');
+            const previewContainer = document.querySelector('.preview-container');
+            
+            // Sesuaikan tinggi container berdasarkan ukuran HP
+            const containerHeights = {
+                'very-small': 320,
+                'small': 350,
+                'medium': 400,
+                'large': 450,
+                'very-large': 500
+            };
+            
+            const height = containerHeights[screenInfo.category] || 400;
+            
+            cameraContainer.style.height = `${height}px`;
+            previewContainer.style.height = `${height}px`;
+            
+            // Update rasio indikator
+            const ratioIndicator = document.querySelector('.ratio-indicator');
+            ratioIndicator.textContent = `RASIO: 9:16 (${screenInfo.label})`;
+        }
+        
+        // Fungsi utama untuk menyesuaikan semua elemen dengan ukuran HP
+        function adjustForScreenSize() {
+            const screenInfo = detectScreenSize();
+            adjustFaceGuideForScreenSize(screenInfo);
+            adjustCameraContainer(screenInfo);
+            
+            return screenInfo;
+        }
+        
+        // ============================================
+        // FUNGSI UTAMA LAINNYA
+        // ============================================
+        
         function updateStatus(message, type = 'info') {
             statusText.textContent = `Status: ${message}`;
             statusText.className = `status-${type}`;
@@ -1013,12 +1187,17 @@
         async function startCamera() {
             try {
                 updateStatus('Meminta izin akses kamera...', 'info');
+                
+                // Deteksi ukuran HP terlebih dahulu
+                const screenInfo = detectScreenSize();
+                const optimalRes = getOptimalCameraResolution(screenInfo);
+                
                 const constraints = {
                     video: { 
-                        facingMode: 'user', 
-                        width: { ideal: 1080 }, 
-                        height: { ideal: 1920 }, // 9:16 ratio (Portrait HD)
-                        aspectRatio: { ideal: 9/16 } // Ideal ratio 9:16 untuk HP
+                        facingMode: 'user',
+                        width: { ideal: optimalRes.width },
+                        height: { ideal: optimalRes.height },
+                        aspectRatio: { ideal: EXACT_RATIO }
                     },
                     audio: false
                 };
@@ -1032,7 +1211,13 @@
                 startCameraBtn.disabled = true;
                 startCameraBtn.innerHTML = '<i class="fas fa-check"></i> Kamera Aktif';
                 
-                updateStatus('Kamera aktif! Posisikan wajah di tengah kotak panduan 9:16.', 'success');
+                updateStatus(`Kamera aktif untuk ${screenInfo.label}! Posisikan wajah di tengah.`, 'success');
+                
+                // Setelah kamera aktif, sesuaikan tampilan
+                setTimeout(() => {
+                    adjustForScreenSize();
+                }, 500);
+                
             } catch (error) {
                 updateStatus(`Gagal mengakses kamera: ${error.message}`, 'error');
                 alert('Tidak dapat mengakses kamera. Pastikan Anda memberikan izin akses kamera.');
@@ -1630,7 +1815,10 @@
         
         // INISIALISASI
         window.addEventListener('load', () => {
-            updateStatus('Photobooth Sarly Madona siap digunakan! Rasio 9:16 sama semua.', 'info');
+            // Deteksi ukuran layar saat pertama kali load
+            adjustForScreenSize();
+            
+            updateStatus('Photobooth Sarly Madona siap digunakan! Kamera otomatis sesuai HP.', 'info');
             updatePhotoGrid();
             
             // EVENT LISTENERS
@@ -1650,6 +1838,17 @@
                 option.addEventListener('click', () => {
                     selectTheme(option.dataset.theme);
                 });
+            });
+            
+            // Deteksi perubahan orientasi atau resize layar
+            window.addEventListener('resize', () => {
+                adjustForScreenSize();
+            });
+            
+            window.addEventListener('orientationchange', () => {
+                setTimeout(() => {
+                    adjustForScreenSize();
+                }, 300);
             });
             
             window.addEventListener('beforeunload', () => {
