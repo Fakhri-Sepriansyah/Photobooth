@@ -800,14 +800,14 @@
         <header>
             <h1><i class="fas fa-camera-retro"></i> PHOTOBOOTH SARLY MADONA</h1>
             <div class="enhanced-features">
-                <i class="fas fa-expand-alt"></i> KAMERA JAUH - HASIL SAMA PERSIS
+                <i class="fas fa-expand-alt"></i> SILAHKAN FOTO DENGAN GAYA BEBAS
                 <i class="fas fa-expand-alt"></i>
             </div>
         </header>
         
         <main class="main-content">
             <section class="camera-section">
-                <h2 class="section-title"><i class="fas fa-video"></i> Kamera - Panduan Jauh</h2>
+                <h2 class="section-title"><i class="fas fa-video"></i> Kamera</h2>
                 <div class="camera-container">
                     <div class="camera-placeholder" id="cameraPlaceholder">
                         <i class="fas fa-camera"></i>
@@ -871,7 +871,7 @@
             </section>
             
             <section class="preview-section">
-                <h2 class="section-title"><i class="fas fa-th-large"></i> Grid 6 Foto (Sama Persis)</h2>
+                <h2 class="section-title"><i class="fas fa-th-large"></i> Grid 6 Foto</h2>
                 <div class="preview-container">
                     <div class="preview-placeholder" id="previewPlaceholder">
                         <i class="fas fa-images"></i>
@@ -897,7 +897,7 @@
         </main>
         
         <section class="instructions">
-            <h2><i class="fas fa-info-circle"></i> Fitur Kamera Jauh - Hasil Sama Persis</h2>
+            <h2><i class="fas fa-info-circle"></i> Fitur Kamera Jauh</h2>
             <div class="steps">
                 <div class="step"><div class="step-number">1</div><div class="step-text">Kamera menampilkan TANPA ZOOM (object-fit: contain)</div></div>
                 <div class="step"><div class="step-number">2</div><div class="step-text">Panduan area lebih LUAS untuk posisi jarak jauh</div></div>
@@ -909,8 +909,8 @@
         </section>
         
         <footer>
-            <p>PHOTOBOOTH SARLY MADONA - Kamera Jauh & Hasil Sama Persis</p>
-            <p>Apa yang Anda lihat = Hasil foto Anda (Natural & Original)!</p>
+            <p>PHOTOBOOTH SARLY MADONA</p>
+            <p>Apa yang Anda lihat = Hasil foto Anda!</p>
             <a href="#" class="download-link" id="downloadLink" style="display:none;">Klik di sini untuk mengunduh hasil foto</a>
         </footer>
     </div>
@@ -1427,7 +1427,16 @@
             // Info
             resultCtx.font = 'bold 22px Arial';
             resultCtx.fillStyle = '#FFD700';
-            resultCtx.fillText('Natural View - No Zoom', resultCanvas.width / 2, resultCanvas.height - 30);
+            const now = new Date();
+            const options = { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+const formattedDate = now.toLocaleDateString('id-ID', options);
+resultCtx.fillText(formattedDate, resultCanvas.width / 2, resultCanvas.height - 30);
             
             // Border luar
             resultCtx.shadowColor = 'transparent';
