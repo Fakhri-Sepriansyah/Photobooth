@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photobooth Sarly Madona - Rasio 9:16 untuk HP</title>
+    <title>Photobooth Sarly Madona - Camera Pas & Hasil Sama</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -74,15 +74,6 @@
             50% { transform: translateY(-5px); }
         }
         
-        .subtitle {
-            font-size: 1rem;
-            opacity: 0.95;
-            max-width: 100%;
-            margin: 0 auto;
-            line-height: 1.5;
-            padding: 0 10px;
-        }
-        
         .enhanced-features {
             background-color: rgba(255,215,0,0.2);
             padding: 10px;
@@ -150,57 +141,31 @@
         #video {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             transform: scaleX(-1);
+            background-color: #000;
         }
         
-        /* PANDUAN RASIO 9:16 UNTUK HP - UKURAN DINAMIS */
         .face-guide {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 180px; /* Default untuk medium screen */
-            height: 320px;
-            border: 3px solid rgba(255, 215, 0, 0.8);
-            border-radius: 8px;
+            width: 280px;
+            height: 498px;
+            border: 3px solid rgba(255, 215, 0, 0.6);
+            border-radius: 10px;
             pointer-events: none;
             z-index: 5;
-            box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.4);
             transition: all 0.3s ease;
-        }
-        
-        /* Kelas untuk ukuran layar berbeda */
-        .face-guide.very-small {
-            width: 120px;
-            height: 213px;
-        }
-        
-        .face-guide.small {
-            width: 140px;
-            height: 249px;
-        }
-        
-        .face-guide.medium {
-            width: 180px;
-            height: 320px;
-        }
-        
-        .face-guide.large {
-            width: 200px;
-            height: 356px;
-        }
-        
-        .face-guide.very-large {
-            width: 220px;
-            height: 391px;
         }
         
         .guide-grid {
             position: absolute;
             width: 100%;
             height: 100%;
-            border: 1px dashed rgba(255, 255, 255, 0.3);
+            border: 1px dashed rgba(255, 255, 255, 0.2);
         }
         
         .guide-center {
@@ -208,22 +173,25 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 10px;
-            height: 10px;
-            background-color: #FFD700;
+            width: 15px;
+            height: 15px;
+            background-color: rgba(255, 215, 0, 0.7);
             border-radius: 50%;
         }
         
         .face-guide-text {
             position: absolute;
-            bottom: -45px;
+            bottom: -50px;
             left: 0;
             width: 100%;
             text-align: center;
             color: #FFD700;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: bold;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            background-color: rgba(0,0,0,0.6);
+            padding: 5px;
+            border-radius: 10px;
         }
         
         .ratio-indicator {
@@ -239,7 +207,7 @@
             z-index: 10;
         }
         
-        .screen-size-indicator {
+        .camera-info {
             position: absolute;
             top: 10px;
             left: 10px;
@@ -250,7 +218,6 @@
             font-size: 0.7rem;
             font-weight: bold;
             z-index: 10;
-            display: none;
         }
         
         .camera-placeholder {
@@ -430,7 +397,8 @@
         .photo-cell img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            background-color: white;
             display: block;
         }
         
@@ -681,14 +649,14 @@
             .camera-container, .preview-container { height: 400px; }
             .six-photos-grid { grid-template-columns: repeat(2,1fr); }
             .sticker-options { grid-template-columns: repeat(2, 1fr); }
-            .face-guide { width: 160px; height: 285px; }
+            .face-guide { width: 220px; height: 391px; }
             .instructions h2 { font-size: 1.2rem; }
             .steps { grid-template-columns: 1fr; }
         }
         
         @media (max-width: 480px) {
             .camera-container, .preview-container { height: 380px; }
-            .face-guide { width: 140px; height: 250px; }
+            .face-guide { width: 200px; height: 356px; }
             h1 { font-size: 1.6rem; }
             .section-title { font-size: 1.2rem; }
         }
@@ -757,18 +725,6 @@
         @keyframes statusPulse {
             0%,100% { background-color: rgba(139,0,0,0.9); }
             50% { background-color: rgba(220,20,60,0.9); }
-        }
-        
-        .vertical-notice {
-            background-color: rgba(255,215,0,0.2);
-            padding: 8px;
-            border-radius: 10px;
-            margin-top: 10px;
-            text-align: center;
-            font-weight: bold;
-            color: #FFD700;
-            border: 2px solid #FFD700;
-            font-size: 0.8rem;
         }
         
         .status-box {
@@ -844,28 +800,28 @@
         <header>
             <h1><i class="fas fa-camera-retro"></i> PHOTOBOOTH SARLY MADONA</h1>
             <div class="enhanced-features">
-                <i class="fas fa-mobile-alt"></i> KAMERA OTOMATIS SESUAI UKURAN HP
-                <i class="fas fa-mobile-alt"></i>
+                <i class="fas fa-expand-alt"></i> KAMERA JAUH - HASIL SAMA PERSIS
+                <i class="fas fa-expand-alt"></i>
             </div>
         </header>
         
         <main class="main-content">
             <section class="camera-section">
-                <h2 class="section-title"><i class="fas fa-video"></i> Kamera Otomatis Sesuai HP</h2>
+                <h2 class="section-title"><i class="fas fa-video"></i> Kamera - Panduan Jauh</h2>
                 <div class="camera-container">
                     <div class="camera-placeholder" id="cameraPlaceholder">
                         <i class="fas fa-camera"></i>
                         <p>Klik "Mulai Kamera" untuk mengaktifkan kamera</p>
-                        <p>Kamera otomatis menyesuaikan ukuran layar HP</p>
+                        <p>Posisikan diri di dalam area panduan (lebih luas)</p>
                     </div>
                     <video id="video" autoplay playsinline></video>
-                    <div class="face-guide medium" id="faceGuide">
+                    <div class="face-guide" id="faceGuide">
                         <div class="guide-grid"></div>
                         <div class="guide-center"></div>
-                        <div class="face-guide-text" id="guideText">POSISIKAN WAJAH DI TENGAH</div>
+                        <div class="face-guide-text" id="guideText">POSISIKAN DIRI DI DALAM AREA INI - KAMERA JAUH</div>
                     </div>
                     <div class="ratio-indicator">RASIO: 9:16</div>
-                    <div class="screen-size-indicator" id="screenSizeIndicator">HP Medium</div>
+                    <div class="camera-info" id="cameraInfo">Kamera: Mode Jauh</div>
                     <div class="flash" id="flash"></div>
                     <div class="countdown" id="countdown">3</div>
                     <div class="photo-status" id="photoStatus">Foto: 0/6</div>
@@ -873,7 +829,7 @@
                 </div>
 
                 <div class="status-box">
-                    <span id="statusText" class="status-info">Status: Menunggu kamera diaktifkan</span>
+                    <span id="statusText" class="status-info">Status: Kamera menampilkan apa adanya (tidak zoom)</span>
                 </div>
                 
                 <div class="controls">
@@ -908,19 +864,19 @@
                     </div>
                     
                     <div class="ratio-info">
-                        <i class="fas fa-ruler-combined"></i> KAMERA OTOMATIS SESUAI UKURAN HP
-                        <div class="ratio-detail">Semua foto: 360px × 640px (9:16 sama) - Output tetap konsisten</div>
+                        <i class="fas fa-ruler-combined"></i> KAMERA JAUH - HASIL SAMA PERSIS
+                        <div class="ratio-detail">Apa yang Anda lihat di kamera = hasil foto (tidak ada zoom/crop)</div>
                     </div>
                 </div>
             </section>
             
             <section class="preview-section">
-                <h2 class="section-title"><i class="fas fa-th-large"></i> Grid 6 Foto (9:16 Sama)</h2>
+                <h2 class="section-title"><i class="fas fa-th-large"></i> Grid 6 Foto (Sama Persis)</h2>
                 <div class="preview-container">
                     <div class="preview-placeholder" id="previewPlaceholder">
                         <i class="fas fa-images"></i>
-                        <p>Grid 6 foto dengan rasio 9:16 sama akan muncul di sini</p>
-                        <p>Format portrait optimal untuk HP</p>
+                        <p>Grid 6 foto akan muncul di sini</p>
+                        <p>Hasil sama persis dengan yang terlihat di kamera</p>
                     </div>
                     <canvas id="photoCanvas"></canvas>
                     <canvas id="resultCanvas"></canvas>
@@ -941,20 +897,20 @@
         </main>
         
         <section class="instructions">
-            <h2><i class="fas fa-info-circle"></i> Fitur Kamera Otomatis Sesuai HP</h2>
+            <h2><i class="fas fa-info-circle"></i> Fitur Kamera Jauh - Hasil Sama Persis</h2>
             <div class="steps">
-                <div class="step"><div class="step-number">1</div><div class="step-text">Kamera DETEKSI OTOMATIS ukuran layar HP Anda</div></div>
-                <div class="step"><div class="step-number">2</div><div class="step-text">Panduan wajah MENYESUAIKAN otomatis besar/kecilnya HP</div></div>
-                <div class="step"><div class="step-number">3</div><div class="step-text">Resolusi kamera optimal untuk HP besar/kecil</div></div>
-                <div class="step"><div class="step-number">4</div><div class="step-text">Hasil foto tetap 9:16 SAMA untuk semua HP</div></div>
-                <div class="step"><div class="step-number">5</div><div class="step-text">Kualitas foto konsisten di semua ukuran HP</div></div>
-                <div class="step"><div class="step-number">6</div><div class="step-text">Tidak perlu setting manual - SEMUA OTOMATIS!</div></div>
+                <div class="step"><div class="step-number">1</div><div class="step-text">Kamera menampilkan TANPA ZOOM (object-fit: contain)</div></div>
+                <div class="step"><div class="step-number">2</div><div class="step-text">Panduan area lebih LUAS untuk posisi jarak jauh</div></div>
+                <div class="step"><div class="step-number">3</div><div class="step-text">Hasil foto SAMA PERSIS dengan yang dilihat di kamera</div></div>
+                <div class="step"><div class="step-number">4</div><div class="step-text">Tidak ada crop/zoom otomatis - semua natural</div></div>
+                <div class="step"><div class="step-number">5</div><div class="step-text">Anda bisa melihat lingkungan sekitar dalam foto</div></div>
+                <div class="step"><div class="step-number">6</div><div class="step-text">Kualitas asli kamera dipertahankan 100%</div></div>
             </div>
         </section>
         
         <footer>
-            <p>PHOTOBOOTH SARLY MADONA - Kamera Otomatis Sesuai Ukuran HP</p>
-            <p>Dari HP kecil hingga besar, hasil foto tetap konsisten 9:16!</p>
+            <p>PHOTOBOOTH SARLY MADONA - Kamera Jauh & Hasil Sama Persis</p>
+            <p>Apa yang Anda lihat = Hasil foto Anda (Natural & Original)!</p>
             <a href="#" class="download-link" id="downloadLink" style="display:none;">Klik di sini untuk mengunduh hasil foto</a>
         </footer>
     </div>
@@ -982,9 +938,6 @@
         const gridTitle = document.getElementById('gridTitle');
         const regenerateStickersBtn = document.getElementById('regenerateStickers');
         const stickerOptions = document.querySelectorAll('.sticker-option');
-        const faceGuide = document.getElementById('faceGuide');
-        const guideText = document.getElementById('guideText');
-        const screenSizeIndicator = document.getElementById('screenSizeIndicator');
         
         // KONTEKS CANVAS
         const ctx = canvas.getContext('2d');
@@ -992,21 +945,19 @@
         
         // VARIABEL UTAMA
         let stream = null;
-        let photos = []; // Foto asli
-        let decoratedPhotos = []; // Foto dengan stiker
+        let photos = [];
+        let decoratedPhotos = [];
         let photoDataUrl = '';
         let isTakingPhotos = false;
         let photoCount = 0;
         let totalPhotosToTake = 1;
         let currentTheme = 'love';
-        let currentScreenSize = 'medium';
         
-        // KONSTANTA ASPEK RATIO 9:16 YANG SAMA PERSIS UNTUK SEMUA FOTO
-        const EXACT_WIDTH = 360;   // Lebar pasti 9:16 (HP Portrait)
-        const EXACT_HEIGHT = 640;  // Tinggi pasti (360/9*16 = 640)
-        const EXACT_RATIO = 9/16;  // Ratio pasti 0.5625
+        // RESOLUSI OUTPUT FIXED 9:16
+        const OUTPUT_WIDTH = 360;
+        const OUTPUT_HEIGHT = 640;
         
-        // DATA STIKER UNTUK 9:16
+        // DATA STIKER
         const stickerThemes = {
             love: {
                 name: 'Tema Cinta',
@@ -1050,154 +1001,23 @@
             }
         };
         
-        // ============================================
-        // FUNGSI UTAMA DETECTION UKURAN LAYAR HP
-        // ============================================
-        
-        // Fungsi untuk mendeteksi ukuran layar HP
-        function detectScreenSize() {
-            const screenWidth = window.innerWidth;
-            const screenHeight = window.innerHeight;
-            const screenRatio = screenWidth / screenHeight;
-            
-            console.log(`Deteksi HP: ${screenWidth}x${screenHeight} (ratio: ${screenRatio.toFixed(2)})`);
-            
-            let screenCategory;
-            let screenLabel;
-            
-            // Klasifikasi ukuran HP berdasarkan lebar layar
-            if (screenWidth <= 320) {
-                screenCategory = 'very-small';
-                screenLabel = 'HP Sangat Kecil';
-            } else if (screenWidth <= 375) {
-                screenCategory = 'small';
-                screenLabel = 'HP Kecil';
-            } else if (screenWidth <= 414) {
-                screenCategory = 'medium';
-                screenLabel = 'HP Sedang';
-            } else if (screenWidth <= 768) {
-                screenCategory = 'large';
-                screenLabel = 'HP Besar';
-            } else {
-                screenCategory = 'very-large';
-                screenLabel = 'HP Sangat Besar/Tablet';
-            }
-            
-            // Simpan kategori saat ini
-            currentScreenSize = screenCategory;
-            
-            // Update indikator di layar
-            screenSizeIndicator.textContent = screenLabel;
-            screenSizeIndicator.style.display = 'block';
-            
-            // Update status
-            updateStatus(`HP terdeteksi: ${screenLabel} (${screenWidth}x${screenHeight})`, 'info');
-            
-            return { category: screenCategory, label: screenLabel, width: screenWidth, height: screenHeight };
-        }
-        
-        // Fungsi untuk menyesuaikan panduan wajah berdasarkan ukuran HP
-        function adjustFaceGuideForScreenSize(screenInfo) {
-            const guide = faceGuide;
-            
-            // Hapus semua kelas ukuran sebelumnya
-            guide.classList.remove('very-small', 'small', 'medium', 'large', 'very-large');
-            
-            // Tambah kelas ukuran yang sesuai
-            guide.classList.add(screenInfo.category);
-            
-            // Update teks panduan
-            const guideMessages = {
-                'very-small': 'HP KECIL: Dekatkan wajah ke kamera',
-                'small': 'HP KECIL: Posisikan wajah di tengah',
-                'medium': 'HP SEDANG: Posisikan wajah di tengah',
-                'large': 'HP BESAR: Posisikan wajah di tengah',
-                'very-large': 'HP/TABLET: Posisikan wajah di tengah'
-            };
-            
-            guideText.textContent = guideMessages[screenInfo.category] || 'POSISIKAN WAJAH DI TENGAH';
-            
-            // Animasi feedback
-            guide.style.transform = 'translate(-50%, -50%) scale(1.1)';
-            setTimeout(() => {
-                guide.style.transform = 'translate(-50%, -50%) scale(1)';
-            }, 300);
-            
-            console.log(`Panduan disesuaikan untuk: ${screenInfo.label}`);
-        }
-        
-        // Fungsi untuk mendapatkan resolusi kamera optimal berdasarkan ukuran HP
-        function getOptimalCameraResolution(screenInfo) {
-            const resolutions = {
-                'very-small': { width: 640, height: 480 },
-                'small': { width: 720, height: 1280 },
-                'medium': { width: 1080, height: 1920 },
-                'large': { width: 1080, height: 1920 },
-                'very-large': { width: 1080, height: 1920 }
-            };
-            
-            const optimal = resolutions[screenInfo.category] || { width: 720, height: 1280 };
-            
-            console.log(`Resolusi kamera optimal: ${optimal.width}x${optimal.height} (untuk ${screenInfo.label})`);
-            return optimal;
-        }
-        
-        // Fungsi untuk menyesuaikan tampilan kamera container
-        function adjustCameraContainer(screenInfo) {
-            const cameraContainer = document.querySelector('.camera-container');
-            const previewContainer = document.querySelector('.preview-container');
-            
-            // Sesuaikan tinggi container berdasarkan ukuran HP
-            const containerHeights = {
-                'very-small': 320,
-                'small': 350,
-                'medium': 400,
-                'large': 450,
-                'very-large': 500
-            };
-            
-            const height = containerHeights[screenInfo.category] || 400;
-            
-            cameraContainer.style.height = `${height}px`;
-            previewContainer.style.height = `${height}px`;
-            
-            // Update rasio indikator
-            const ratioIndicator = document.querySelector('.ratio-indicator');
-            ratioIndicator.textContent = `RASIO: 9:16 (${screenInfo.label})`;
-        }
-        
-        // Fungsi utama untuk menyesuaikan semua elemen dengan ukuran HP
-        function adjustForScreenSize() {
-            const screenInfo = detectScreenSize();
-            adjustFaceGuideForScreenSize(screenInfo);
-            adjustCameraContainer(screenInfo);
-            
-            return screenInfo;
-        }
-        
-        // ============================================
-        // FUNGSI UTAMA LAINNYA
-        // ============================================
-        
+        // FUNGSI UTAMA
         function updateStatus(message, type = 'info') {
             statusText.textContent = `Status: ${message}`;
             statusText.className = `status-${type}`;
+            console.log(message);
         }
         
         async function startCamera() {
             try {
                 updateStatus('Meminta izin akses kamera...', 'info');
                 
-                // Deteksi ukuran HP terlebih dahulu
-                const screenInfo = detectScreenSize();
-                const optimalRes = getOptimalCameraResolution(screenInfo);
-                
+                // Gunakan constraint sederhana
                 const constraints = {
                     video: { 
                         facingMode: 'user',
-                        width: { ideal: optimalRes.width },
-                        height: { ideal: optimalRes.height },
-                        aspectRatio: { ideal: EXACT_RATIO }
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 }
                     },
                     audio: false
                 };
@@ -1211,16 +1031,12 @@
                 startCameraBtn.disabled = true;
                 startCameraBtn.innerHTML = '<i class="fas fa-check"></i> Kamera Aktif';
                 
-                updateStatus(`Kamera aktif untuk ${screenInfo.label}! Posisikan wajah di tengah.`, 'success');
-                
-                // Setelah kamera aktif, sesuaikan tampilan
-                setTimeout(() => {
-                    adjustForScreenSize();
-                }, 500);
+                updateStatus('Kamera aktif! Posisikan diri dalam area panduan.', 'success');
                 
             } catch (error) {
+                console.error('Error accessing camera:', error);
                 updateStatus(`Gagal mengakses kamera: ${error.message}`, 'error');
-                alert('Tidak dapat mengakses kamera. Pastikan Anda memberikan izin akses kamera.');
+                alert('Tidak dapat mengakses kamera. Pastikan Anda memberikan izin akses kamera dan kamera berfungsi dengan baik.');
             }
         }
         
@@ -1233,7 +1049,7 @@
             isTakingPhotos = true;
             takeSinglePhotoBtn.disabled = true;
             startSixPhotosBtn.disabled = true;
-            updateStatus('Siap mengambil 1 foto dengan rasio 9:16...', 'info');
+            updateStatus('Siap mengambil 1 foto...', 'info');
             startCountdown();
         }
         
@@ -1249,7 +1065,7 @@
             retakeAllBtn.disabled = false;
             photoStatus.style.display = 'block';
             updatePhotoStatus();
-            updateStatus('Memulai sesi 6 foto dengan rasio 9:16 sama...', 'info');
+            updateStatus('Memulai sesi 6 foto...', 'info');
             startCountdown();
         }
         
@@ -1275,7 +1091,7 @@
         }
         
         function takePhoto() {
-            updateStatus('Mengambil foto dengan rasio 9:16 yang sama...', 'info');
+            updateStatus('Mengambil foto...', 'info');
             
             if (video.readyState !== 4) {
                 updateStatus('Video belum siap, mencoba lagi...', 'error');
@@ -1286,72 +1102,36 @@
             const videoWidth = video.videoWidth;
             const videoHeight = video.videoHeight;
             
-            // Set canvas ke ukuran EXACT 9:16 yang SAMA untuk SEMUA FOTO
-            canvas.width = EXACT_WIDTH;
-            canvas.height = EXACT_HEIGHT;
+            console.log(`Video size: ${videoWidth}x${videoHeight}`);
             
-            // Hitung area crop untuk mendapatkan rasio 9:16
-            let sourceWidth, sourceHeight, sourceX, sourceY;
+            // Set canvas ke ukuran video asli
+            canvas.width = videoWidth;
+            canvas.height = videoHeight;
             
-            // Log rasio asli kamera
-            console.log(`Rasio kamera asli: ${videoWidth}:${videoHeight} (${(videoWidth/videoHeight).toFixed(4)})`);
-            console.log(`Target rasio: 9:16 (${EXACT_RATIO.toFixed(4)})`);
-            
-            if (videoWidth / videoHeight < EXACT_RATIO) {
-                // Video lebih tinggi daripada 9:16 (portrait ekstrem)
-                sourceWidth = videoWidth;
-                sourceHeight = Math.round(sourceWidth / EXACT_RATIO);
-                sourceX = 0;
-                sourceY = Math.round((videoHeight - sourceHeight) / 2);
-                console.log(`Crop: Ambil tengah vertikal ${sourceWidth}x${sourceHeight} dari ${videoWidth}x${videoHeight}`);
-            } else {
-                // Video lebih lebar daripada 9:16 (mendekati landscape)
-                sourceHeight = videoHeight;
-                sourceWidth = Math.round(sourceHeight * EXACT_RATIO);
-                sourceX = Math.round((videoWidth - sourceWidth) / 2);
-                sourceY = 0;
-                console.log(`Crop: Ambil tengah horizontal ${sourceWidth}x${sourceHeight} dari ${videoWidth}x${videoHeight}`);
-            }
-            
-            // Pastikan tidak melebihi batas video
-            sourceX = Math.max(0, sourceX);
-            sourceY = Math.max(0, sourceY);
-            sourceWidth = Math.min(sourceWidth, videoWidth - sourceX);
-            sourceHeight = Math.min(sourceHeight, videoHeight - sourceY);
-            
-            // Clear canvas dengan warna putih
-            ctx.fillStyle = 'white';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            // Gambar video ke canvas dengan crop ke 9:16
+            // Gambar video ke canvas (mirror untuk selfie)
             ctx.save();
-            ctx.scale(-1, 1); // Mirror horizontal
-            ctx.drawImage(
-                video,
-                sourceX, sourceY, sourceWidth, sourceHeight,
-                -canvas.width, 0, canvas.width, canvas.height
-            );
+            ctx.scale(-1, 1);
+            ctx.drawImage(video, 0, 0, videoWidth, videoHeight, -videoWidth, 0, videoWidth, videoHeight);
             ctx.restore();
             
             // Efek flash
             flash.classList.add('flash-active');
             
-            // Simpan foto asli (sudah 9:16)
+            // Ambil foto asli dari canvas
             const photoData = canvas.toDataURL('image/jpeg', 0.9);
             photos.push(photoData);
             photoCount++;
             
-            updateStatus(`Foto ${photoCount} berhasil diambil (360×640px 9:16)!`, 'success');
+            updateStatus(`Foto ${photoCount} berhasil diambil!`, 'success');
             showPhotoComplete();
             
             if (totalPhotosToTake > 1) {
                 updatePhotoStatus();
             }
             
-            // Auto-decorate foto dengan rasio 9:16
-            autoDecoratePhoto(photoCount - 1);
-            
+            // Langsung proses foto untuk preview
             setTimeout(() => {
+                processAndDecoratePhoto(photoCount - 1);
                 flash.classList.remove('flash-active');
             }, 500);
             
@@ -1360,53 +1140,77 @@
                     startCountdown();
                 }, 2000);
             } else {
-                finishPhotoSession();
+                setTimeout(() => {
+                    finishPhotoSession();
+                }, 1000);
             }
         }
         
-        // FUNGSI DEKORASI FOTO DENGAN RASIO 9:16
-        function autoDecoratePhoto(photoIndex) {
+        // PROSES FOTO DAN DEKORASI
+        function processAndDecoratePhoto(photoIndex) {
             if (!photos[photoIndex]) return;
             
-            const tempCanvas = document.createElement('canvas');
-            const tempCtx = tempCanvas.getContext('2d');
             const img = new Image();
-            
-            img.onload = () => {
-                // Set canvas ke ukuran EXACT 9:16
-                tempCanvas.width = EXACT_WIDTH;
-                tempCanvas.height = EXACT_HEIGHT;
+            img.onload = function() {
+                // Buat canvas untuk resize ke 9:16
+                const tempCanvas = document.createElement('canvas');
+                const tempCtx = tempCanvas.getContext('2d');
                 
-                // Gambar foto asli (sudah 9:16)
-                tempCtx.drawImage(img, 0, 0, tempCanvas.width, tempCanvas.height);
+                tempCanvas.width = OUTPUT_WIDTH;
+                tempCanvas.height = OUTPUT_HEIGHT;
                 
-                // Ambil tema yang dipilih
+                // Hitung scaling yang tepat untuk fit 9:16 tanpa crop
+                const imgRatio = img.width / img.height;
+                const targetRatio = OUTPUT_WIDTH / OUTPUT_HEIGHT;
+                
+                let drawWidth, drawHeight, offsetX, offsetY;
+                
+                if (imgRatio > targetRatio) {
+                    // Gambar lebih lebar, sesuaikan berdasarkan tinggi
+                    drawHeight = OUTPUT_HEIGHT;
+                    drawWidth = img.width * (OUTPUT_HEIGHT / img.height);
+                    offsetX = (OUTPUT_WIDTH - drawWidth) / 2;
+                    offsetY = 0;
+                } else {
+                    // Gambar lebih tinggi, sesuaikan berdasarkan lebar
+                    drawWidth = OUTPUT_WIDTH;
+                    drawHeight = img.height * (OUTPUT_WIDTH / img.width);
+                    offsetX = 0;
+                    offsetY = (OUTPUT_HEIGHT - drawHeight) / 2;
+                }
+                
+                // Background putih untuk area yang tidak terisi
+                tempCtx.fillStyle = 'white';
+                tempCtx.fillRect(0, 0, OUTPUT_WIDTH, OUTPUT_HEIGHT);
+                
+                // Gambar foto dengan proporsi yang benar
+                tempCtx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+                
+                // Tambahkan stiker
                 const theme = stickerThemes[currentTheme];
                 
-                // Tambahkan stiker dengan posisi yang dioptimalkan untuk 9:16
                 theme.stickers.forEach(sticker => {
                     const positions = Array.isArray(sticker.positions) ? sticker.positions : [sticker.positions];
                     
                     positions.forEach(position => {
                         let x, y;
                         
-                        // Posisi dioptimalkan untuk rasio 9:16 yang lebih tinggi
                         switch(position) {
                             case 'top-left':
                                 x = 30;
                                 y = 50;
                                 break;
                             case 'top-right':
-                                x = tempCanvas.width - sticker.size - 30;
+                                x = OUTPUT_WIDTH - sticker.size - 30;
                                 y = 50;
                                 break;
                             case 'bottom-left':
                                 x = 30;
-                                y = tempCanvas.height - sticker.size - 50;
+                                y = OUTPUT_HEIGHT - sticker.size - 50;
                                 break;
                             case 'bottom-right':
-                                x = tempCanvas.width - sticker.size - 30;
-                                y = tempCanvas.height - sticker.size - 50;
+                                x = OUTPUT_WIDTH - sticker.size - 30;
+                                y = OUTPUT_HEIGHT - sticker.size - 50;
                                 break;
                             default:
                                 x = 30;
@@ -1414,87 +1218,39 @@
                         }
                         
                         // Gambar stiker
-                        drawSticker(tempCtx, sticker.emoji, sticker.size, x, y);
+                        tempCtx.save();
+                        tempCtx.font = `bold ${sticker.size}px Arial`;
+                        tempCtx.textAlign = 'center';
+                        tempCtx.textBaseline = 'middle';
+                        tempCtx.shadowColor = 'rgba(0,0,0,0.5)';
+                        tempCtx.shadowBlur = 6;
+                        tempCtx.shadowOffsetX = 2;
+                        tempCtx.shadowOffsetY = 2;
+                        tempCtx.fillText(sticker.emoji, x + sticker.size/2, y + sticker.size/2);
+                        tempCtx.restore();
                     });
                 });
                 
-                // Tambahkan bingkai
-                addFrameToPhoto(tempCtx, tempCanvas, theme);
+                // Tambahkan frame
+                tempCtx.strokeStyle = theme.frames[0].color;
+                tempCtx.lineWidth = theme.frames[0].size;
+                tempCtx.strokeRect(5, 5, OUTPUT_WIDTH - 10, OUTPUT_HEIGHT - 10);
                 
                 // Simpan foto yang sudah didekorasi
                 decoratedPhotos[photoIndex] = tempCanvas.toDataURL('image/jpeg', 0.9);
                 
-                // Update grid
-                setTimeout(() => {
-                    updatePhotoGrid();
-                }, 100);
+                // Update grid UI
+                updatePhotoGrid();
+                
+                // Jika ini foto terakhir, buat gambar untuk download
+                if (photoIndex === totalPhotosToTake - 1) {
+                    setTimeout(() => {
+                        createDownloadImage();
+                    }, 500);
+                }
             };
             
             img.src = photos[photoIndex];
-        }
-        
-        // Fungsi gambar stiker
-        function drawSticker(ctx, emoji, size, x, y) {
-            ctx.save();
-            ctx.font = `bold ${size}px Arial`;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            
-            // Efek bayangan
-            ctx.shadowColor = 'rgba(0,0,0,0.5)';
-            ctx.shadowBlur = 6;
-            ctx.shadowOffsetX = 2;
-            ctx.shadowOffsetY = 2;
-            
-            ctx.fillText(emoji, x + size/2, y + size/2);
-            
-            // Outline putih
-            ctx.shadowColor = 'rgba(255,255,255,0.8)';
-            ctx.shadowBlur = 3;
-            ctx.shadowOffsetX = 0;
-            ctx.shadowOffsetY = 0;
-            ctx.strokeText(emoji, x + size/2, y + size/2);
-            
-            ctx.restore();
-        }
-        
-        // Fungsi tambah bingkai
-        function addFrameToPhoto(ctx, canvas, theme) {
-            ctx.save();
-            
-            theme.frames.forEach(frame => {
-                switch(frame.type) {
-                    case 'heart-border':
-                        ctx.strokeStyle = frame.color;
-                        ctx.lineWidth = frame.size;
-                        ctx.strokeRect(5, 5, canvas.width - 10, canvas.height - 10);
-                        break;
-                        
-                    case 'confetti-border':
-                        ctx.setLineDash([8, 4]);
-                        ctx.strokeStyle = frame.color;
-                        ctx.lineWidth = frame.size;
-                        ctx.strokeRect(8, 8, canvas.width - 16, canvas.height - 16);
-                        ctx.setLineDash([]);
-                        break;
-                        
-                    case 'sparkle-border':
-                        ctx.strokeStyle = frame.color;
-                        ctx.lineWidth = frame.size;
-                        ctx.setLineDash([4, 2]);
-                        ctx.strokeRect(6, 6, canvas.width - 12, canvas.height - 12);
-                        ctx.setLineDash([]);
-                        break;
-                        
-                    case 'funny-border':
-                        ctx.strokeStyle = frame.color;
-                        ctx.lineWidth = frame.size;
-                        ctx.strokeRect(4, 4, canvas.width - 8, canvas.height - 8);
-                        break;
-                }
-            });
-            
-            ctx.restore();
         }
         
         function finishPhotoSession() {
@@ -1502,7 +1258,7 @@
             
             if (totalPhotosToTake > 1) {
                 photoStatus.style.display = 'none';
-                updateStatus(`Selesai mengambil ${totalPhotosToTake} foto dengan rasio 9:16 sama!`, 'success');
+                updateStatus(`Selesai mengambil ${totalPhotosToTake} foto!`, 'success');
                 createConfetti();
             } else {
                 updateStatus('Foto berhasil diambil!', 'success');
@@ -1520,9 +1276,6 @@
             regenerateStickersBtn.disabled = false;
             downloadLink.style.display = 'inline-block';
             retakeAllBtn.disabled = false;
-            
-            // Buat gambar akhir untuk diunduh
-            createDownloadImage();
         }
         
         function updatePhotoStatus() {
@@ -1542,29 +1295,28 @@
                 
                 const img = document.createElement('img');
                 
-                if (i < photos.length) {
-                    img.src = decoratedPhotos[i] || photos[i];
-                    img.alt = `Foto ${i + 1} (360×640px 9:16)`;
-                    img.title = `Foto ${i + 1} - 360×640px (9:16)`;
+                if (i < decoratedPhotos.length && decoratedPhotos[i]) {
+                    img.src = decoratedPhotos[i];
+                    img.alt = `Foto ${i + 1}`;
                     
-                    if (i === photos.length - 1) {
+                    if (i === decoratedPhotos.length - 1) {
                         cell.classList.add('animated');
                     }
                 } else if (i < totalPhotosToTake) {
+                    // Placeholder untuk foto yang belum diambil
                     img.src = 'data:image/svg+xml;base64,' + btoa(`
-                        <svg xmlns="http://www.w3.org/2000/svg" width="${EXACT_WIDTH}" height="${EXACT_HEIGHT}" viewBox="0 0 ${EXACT_WIDTH} ${EXACT_HEIGHT}">
-                            <rect width="${EXACT_WIDTH}" height="${EXACT_HEIGHT}" fill="#f0f0f0"/>
-                            <circle cx="${EXACT_WIDTH/2}" cy="${EXACT_HEIGHT/2}" r="40" fill="#ddd"/>
-                            <rect x="${(EXACT_WIDTH-40)/2}" y="${EXACT_HEIGHT-70}" width="40" height="25" fill="#ddd" rx="5"/>
-                            <text x="${EXACT_WIDTH/2}" y="${EXACT_HEIGHT-20}" font-family="Arial" font-size="14" text-anchor="middle" fill="#999">${i + 1}</text>
-                            <text x="${EXACT_WIDTH/2}" y="30" font-family="Arial" font-size="10" text-anchor="middle" fill="#aaa">9:16</text>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="${OUTPUT_WIDTH}" height="${OUTPUT_HEIGHT}" viewBox="0 0 ${OUTPUT_WIDTH} ${OUTPUT_HEIGHT}">
+                            <rect width="${OUTPUT_WIDTH}" height="${OUTPUT_HEIGHT}" fill="#f0f0f0"/>
+                            <circle cx="${OUTPUT_WIDTH/2}" cy="${OUTPUT_HEIGHT/2}" r="40" fill="#ddd"/>
+                            <text x="${OUTPUT_WIDTH/2}" y="${OUTPUT_HEIGHT/2+5}" font-family="Arial" font-size="14" text-anchor="middle" fill="#999">${i + 1}</text>
                         </svg>
                     `);
                 } else {
+                    // Kosong
                     img.src = 'data:image/svg+xml;base64,' + btoa(`
-                        <svg xmlns="http://www.w3.org/2000/svg" width="${EXACT_WIDTH}" height="${EXACT_HEIGHT}" viewBox="0 0 ${EXACT_WIDTH} ${EXACT_HEIGHT}">
-                            <rect width="${EXACT_WIDTH}" height="${EXACT_HEIGHT}" fill="#f5f5f5"/>
-                            <text x="${EXACT_WIDTH/2}" y="${EXACT_HEIGHT/2}" font-family="Arial" font-size="14" text-anchor="middle" fill="#ccc">Kosong</text>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="${OUTPUT_WIDTH}" height="${OUTPUT_HEIGHT}" viewBox="0 0 ${OUTPUT_WIDTH} ${OUTPUT_HEIGHT}">
+                            <rect width="${OUTPUT_WIDTH}" height="${OUTPUT_HEIGHT}" fill="#f5f5f5"/>
+                            <text x="${OUTPUT_WIDTH/2}" y="${OUTPUT_HEIGHT/2}" font-family="Arial" font-size="14" text-anchor="middle" fill="#ccc">Kosong</text>
                         </svg>
                     `);
                 }
@@ -1576,20 +1328,22 @@
         }
         
         function createDownloadImage() {
-            if (photos.length === 0) return;
-            
-            updateStatus('Menyiapkan gambar untuk diunduh...', 'info');
-            const isSinglePhoto = photos.length === 1;
-            
-            // Set ukuran result canvas dengan rasio 9:16 untuk hasil akhir
-            if (isSinglePhoto) {
-                resultCanvas.width = 720;   // 9:16 untuk single photo
-                resultCanvas.height = 1280; // 9:16
-            } else {
-                resultCanvas.width = 1080;  // 9:16 untuk grid 2x3
-                resultCanvas.height = 1920; // 9:16
+            if (decoratedPhotos.length === 0) {
+                updateStatus('Belum ada foto untuk diunduh', 'error');
+                return;
             }
             
+            updateStatus('Menyiapkan gambar untuk diunduh...', 'info');
+            
+            // Ukuran canvas untuk hasil akhir
+            const gridCols = 2;
+            const gridRows = 3;
+            const padding = 30;
+            
+            resultCanvas.width = 1080;
+            resultCanvas.height = 1920;
+            
+            // Background
             const gradient = resultCtx.createLinearGradient(0, 0, resultCanvas.width, resultCanvas.height);
             gradient.addColorStop(0, '#8B0000');
             gradient.addColorStop(0.5, '#B22222');
@@ -1597,62 +1351,67 @@
             resultCtx.fillStyle = gradient;
             resultCtx.fillRect(0, 0, resultCanvas.width, resultCanvas.height);
             
-            if (isSinglePhoto) {
+            // Layout grid
+            const cellWidth = resultCanvas.width / gridCols;
+            const cellHeight = resultCanvas.height / gridRows;
+            const photoWidth = cellWidth - padding * 2;
+            const photoHeight = Math.round(photoWidth * 16/9);
+            
+            let imagesLoaded = 0;
+            const totalImages = Math.min(6, decoratedPhotos.length);
+            
+            for (let i = 0; i < totalImages; i++) {
                 const img = new Image();
                 img.onload = () => {
-                    const photoWidth = resultCanvas.width - 120;
-                    const photoHeight = Math.round(photoWidth * 16/9); // 9:16
-                    const x = 60;
-                    const y = (resultCanvas.height - photoHeight) / 2;
+                    imagesLoaded++;
                     
+                    const row = Math.floor(i / gridCols);
+                    const col = i % gridCols;
+                    const x = col * cellWidth + padding;
+                    const y = row * cellHeight + (cellHeight - photoHeight) / 2;
+                    
+                    // Background putih untuk foto
                     resultCtx.fillStyle = 'white';
                     resultCtx.fillRect(x - 5, y - 5, photoWidth + 10, photoHeight + 10);
+                    
+                    // Border emas
                     resultCtx.strokeStyle = '#FFD700';
-                    resultCtx.lineWidth = 8;
+                    resultCtx.lineWidth = 5;
                     resultCtx.strokeRect(x - 5, y - 5, photoWidth + 10, photoHeight + 10);
+                    
+                    // Gambar foto
                     resultCtx.drawImage(img, x, y, photoWidth, photoHeight);
-                    addTextToResult();
-                    saveResultImage();
+                    
+                    // Jika semua gambar sudah dimuat, tambahkan teks dan simpan
+                    if (imagesLoaded === totalImages) {
+                        addTextToResult();
+                        saveResultImage();
+                    }
                 };
-                img.src = decoratedPhotos[0] || photos[0];
-            } else {
-                const gridCols = 2;
-                const gridRows = 3;
-                const cellWidth = resultCanvas.width / gridCols;
-                const cellHeight = resultCanvas.height / gridRows;
-                const padding = 30;
-                const photoWidth = cellWidth - padding * 2;
-                const photoHeight = Math.round(photoWidth * 16/9); // 9:16
                 
-                let imagesLoaded = 0;
+                img.onerror = () => {
+                    console.error(`Gagal memuat gambar ${i}`);
+                    imagesLoaded++;
+                    
+                    // Jika semua gambar sudah diproses (termasuk yang error)
+                    if (imagesLoaded === totalImages) {
+                        addTextToResult();
+                        saveResultImage();
+                    }
+                };
                 
-                for (let i = 0; i < Math.min(6, photos.length); i++) {
-                    const img = new Image();
-                    img.onload = () => {
-                        imagesLoaded++;
-                        const row = Math.floor(i / gridCols);
-                        const col = i % gridCols;
-                        const x = col * cellWidth + padding;
-                        const y = row * cellHeight + (cellHeight - photoHeight) / 2;
-                        
-                        resultCtx.fillStyle = 'white';
-                        resultCtx.fillRect(x - 5, y - 5, photoWidth + 10, photoHeight + 10);
-                        resultCtx.strokeStyle = '#FFD700';
-                        resultCtx.lineWidth = 5;
-                        resultCtx.strokeRect(x - 5, y - 5, photoWidth + 10, photoHeight + 10);
-                        resultCtx.drawImage(img, x, y, photoWidth, photoHeight);
-                        
-                        if (imagesLoaded === Math.min(6, photos.length)) {
-                            addTextToResult();
-                            saveResultImage();
-                        }
-                    };
-                    img.src = decoratedPhotos[i] || photos[i];
-                }
+                img.src = decoratedPhotos[i];
+            }
+            
+            // Jika tidak ada gambar yang perlu dimuat
+            if (totalImages === 0) {
+                addTextToResult();
+                saveResultImage();
             }
         }
         
         function addTextToResult() {
+            // Judul
             resultCtx.fillStyle = '#FFD700';
             resultCtx.font = 'bold 60px Arial';
             resultCtx.textAlign = 'center';
@@ -1660,15 +1419,17 @@
             resultCtx.shadowBlur = 10;
             resultCtx.fillText('SARLY', resultCanvas.width / 2, 80);
             
+            // Subjudul
             resultCtx.font = 'bold italic 45px Arial';
             resultCtx.fillStyle = 'white';
             resultCtx.fillText('MADONA', resultCanvas.width / 2, resultCanvas.height - 70);
             
-            // Tambahkan info rasio
+            // Info
             resultCtx.font = 'bold 22px Arial';
             resultCtx.fillStyle = '#FFD700';
-            resultCtx.fillText('', resultCanvas.width / 2, resultCanvas.height - 30);
+            resultCtx.fillText('Natural View - No Zoom', resultCanvas.width / 2, resultCanvas.height - 30);
             
+            // Border luar
             resultCtx.shadowColor = 'transparent';
             resultCtx.shadowBlur = 0;
             resultCtx.strokeStyle = '#FFD700';
@@ -1677,8 +1438,14 @@
         }
         
         function saveResultImage() {
-            photoDataUrl = resultCanvas.toDataURL('image/png');
-            updateStatus('Gambar siap diunduh! Semua foto rasio 9:16 sama.', 'success');
+            try {
+                photoDataUrl = resultCanvas.toDataURL('image/png');
+                updateStatus('Gambar siap diunduh!', 'success');
+                console.log('Foto siap diunduh');
+            } catch (error) {
+                console.error('Error saving image:', error);
+                updateStatus('Gagal menyiapkan gambar untuk diunduh', 'error');
+            }
         }
         
         function retakeAllPhotos() {
@@ -1706,14 +1473,20 @@
                 return;
             }
             
-            const link = document.createElement('a');
-            link.href = photoDataUrl;
-            link.download = `sarly-madona-6foto-9x16-sama-${new Date().getTime()}.png`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            updateStatus('Foto berhasil diunduh!', 'success');
-            alert(`6 Foto Sarly Madona dengan rasio 9:16 sama telah berhasil diunduh!`);
+            try {
+                const link = document.createElement('a');
+                link.href = photoDataUrl;
+                link.download = `sarly-madona-${new Date().getTime()}.png`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                updateStatus('Foto berhasil diunduh!', 'success');
+                alert(`Foto Sarly Madona telah berhasil diunduh!`);
+            } catch (error) {
+                console.error('Error downloading:', error);
+                updateStatus('Gagal mengunduh foto', 'error');
+                alert('Gagal mengunduh foto. Silakan coba lagi.');
+            }
         }
         
         function showPhotoComplete() {
@@ -1771,7 +1544,6 @@
             return colors[Math.floor(Math.random() * colors.length)];
         }
         
-        // FUNGSI UNTUK GANTI STIKER
         function regenerateStickers() {
             if (photos.length === 0) {
                 alert('Belum ada foto yang bisa diberi stiker. Silakan ambil foto terlebih dahulu.');
@@ -1781,20 +1553,19 @@
             updateStatus('Mengganti stiker...', 'info');
             decoratedPhotos = [];
             
-            // Dekorasi ulang semua foto dengan rasio 9:16
+            // Proses ulang semua foto dengan stiker baru
             for (let i = 0; i < photos.length; i++) {
-                autoDecoratePhoto(i);
+                processAndDecoratePhoto(i);
             }
             
-            // Update grid dengan stiker baru
+            // Update grid
             setTimeout(() => {
                 updatePhotoGrid();
                 createDownloadImage();
-                updateStatus('Stiker berhasil diganti! Rasio tetap 9:16 sama.', 'success');
-            }, 800);
+                updateStatus('Stiker berhasil diganti!', 'success');
+            }, 1000);
         }
         
-        // FUNGSI UNTUK PILIH TEMA
         function selectTheme(theme) {
             currentTheme = theme;
             
@@ -1815,10 +1586,7 @@
         
         // INISIALISASI
         window.addEventListener('load', () => {
-            // Deteksi ukuran layar saat pertama kali load
-            adjustForScreenSize();
-            
-            updateStatus('Photobooth Sarly Madona siap digunakan! Kamera otomatis sesuai HP.', 'info');
+            updateStatus('Photobooth Sarly Madona siap digunakan!', 'info');
             updatePhotoGrid();
             
             // EVENT LISTENERS
@@ -1838,17 +1606,6 @@
                 option.addEventListener('click', () => {
                     selectTheme(option.dataset.theme);
                 });
-            });
-            
-            // Deteksi perubahan orientasi atau resize layar
-            window.addEventListener('resize', () => {
-                adjustForScreenSize();
-            });
-            
-            window.addEventListener('orientationchange', () => {
-                setTimeout(() => {
-                    adjustForScreenSize();
-                }, 300);
             });
             
             window.addEventListener('beforeunload', () => {
